@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in subs.gemspec
-gemspec
+group :development, :test do
+    gem 'rspec', '~> 3.5'
+end
+
+gem 'thor'
