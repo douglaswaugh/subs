@@ -1,28 +1,14 @@
 #!/usr/bin/env ruby
 
-require 'optparse'
+require 'rubygems'
+require 'thor'
 
-options = {}
-
-opt_parser = OptionParser.new do |opt|
-  opt.banner = 'Usage: opt_parser COMMAND [OPTIONS]'
-  opt.separator ''
-  opt.separator 'Commands'
-  opt.separator '    add-practice: add a new practice'
-  opt.separator '    edit-practice: edit a practice'
+class ThorExample < Thor 
+  desc "add-practice", "add a new practice" 
+  method_option :players,:type => :array,:desc => "the people that played in the practice"
+  def add_practice 
+    puts "start #{options.inspect}"
+  end
 end
 
-opt_parser.parse!
-
-case ARGV[0]
-when 'add-practice'
-  puts 'Adding practice'
-when 'edit-practice'
-  puts 'Editing practice'
-else
-  puts opt_parser
-end
-
-module Subs
-  # Your code goes here...
-end
+ThorExample.start
