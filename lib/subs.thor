@@ -3,7 +3,7 @@
 require 'rubygems'
 require 'thor'
 
-class ThorExample < Thor 
+class Subs < Thor 
   desc "add-practice", "add a new practice" 
   method_option :players,:type => :array,:desc => "the people that played in the practice"
   def add_practice 
@@ -11,4 +11,4 @@ class ThorExample < Thor
   end
 end
 
-ThorExample.start
+Subs.start
