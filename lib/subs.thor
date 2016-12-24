@@ -10,5 +10,3 @@ class Subs < Thor
     puts "start #{options.inspect}"
   end
 end
-
-Subs.start
