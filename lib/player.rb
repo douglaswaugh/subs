@@ -11,4 +11,8 @@ class Player
   def balance
     @balance
   end
+
+  def self.get_player(name)
+    return Player.new(name)
+  end
 end
