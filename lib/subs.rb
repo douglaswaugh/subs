@@ -23,7 +23,14 @@ class Subs < Thor
     end
   end
 
-  def 
+  desc "balance", "Gets the balance for a player"
+  method_option :player,:type => :string,:desc => "Player whose balance you want to get"
+  def balance
+    if options[:player]
+      puts "Player"
+      puts "  #{options[:player]}"
+    end
+  end
 end
 
 Subs.start(ARGV)

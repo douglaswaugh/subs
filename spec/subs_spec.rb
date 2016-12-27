@@ -20,7 +20,7 @@ require "spec_helper"
 #   booked court event
 #   provided balls event
 #   transfer paid event
-# get-balance --player jamie
+# balance --player jamie
 
 # Print statement for player
 # get-statement --player jamie --from 13/12/2015 --to 27/12/2016
