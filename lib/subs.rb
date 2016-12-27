@@ -27,8 +27,8 @@ class Subs < Thor
   method_option :player,:type => :string,:desc => "Player whose balance you want to get"
   def balance
     if options[:player]
-      puts "Player"
-      puts "  #{options[:player]}"
+      player = Player.get_player(options[:player])
+      puts "#{player.name}: #{player.balance}"
     end
   end
 end
