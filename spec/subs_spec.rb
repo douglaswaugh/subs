@@ -22,5 +22,8 @@ require "spec_helper"
 #   transfer paid event
 # get-balance --player jamie
 
+# Print statement for player
+# get-statement --player jamie --from 13/12/2015 --to 27/12/2016
+
 # Print balance for all players (load events, hydrate all players, print statement for each player)
 # get-balances
