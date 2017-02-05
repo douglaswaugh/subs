@@ -21,6 +21,7 @@ require "spec_helper"
 #   booked court event
 #   provided balls event
 #   transfer paid event
+#   practice created event
 # balance --player jamie
 
 # Print statement for player

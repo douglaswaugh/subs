@@ -28,4 +28,20 @@ describe PlayerRepository do
             expect(player.balance).to eq 5.55
         end
     end
+
+    context "when there are multiple events" do
+        it "should filter events by player name" do
+            playerRepository = PlayerRepository.new
+
+            events = [
+                {:player_name => "dummy player name"},
+                {:player_name => "dummy player name"},
+                {:player_name => "other player name"}
+            ]
+
+            events = playerRepository.filter_events_by_player(events, "dummy player name")
+
+            expect(events.count).to eq 2
+        end
+    end
 end
