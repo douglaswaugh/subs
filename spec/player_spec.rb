@@ -26,4 +26,10 @@ describe Player do
     player.handle_event({:type => "provided_balls", :amount => -3.50})
     expect(player.balance).to eq -3.5
   end
+
+  it "should update balance when court booked event processed" do
+    player = Player.new("dummy player name")
+    player.handle_event({:type => "booked_court", :amount => -18})
+    expect(player.balance).to eq -18
+  end
 end

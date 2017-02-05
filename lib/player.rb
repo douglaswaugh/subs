@@ -28,6 +28,10 @@ class Player
     @balance = @balance + event[:amount]
   end
 
+  def booked_court(event)
+    @balance = @balance + event[:amount]
+  end
+
   def self.get_player(name)
     return Player.new(name)
   end
