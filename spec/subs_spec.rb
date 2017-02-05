@@ -13,6 +13,7 @@ require "spec_helper"
 # add-payment-made --to jamie --amount 50 --type cash/coolhurst-transfer/bank-transfer
 
 # Print balance for player (load events, filter by player, hydrate player, print statement - get to define everything we need)
+#   player created event
 #   court fee event
 #   balls fee event
 #   transfer received event

@@ -9,9 +9,9 @@ describe Player do
     expect(player.balance).to eq 0
   end
 
-  it "should get player by name" do
-    player_name = "dummy player name"
-    player = Player.get_player(player_name)
-    expect(player.name).to eq player_name
+  it "should update balance when transfer event received" do
+    player = Player.new("dummy player name")
+    player.handle_transfer_event({:amount => -5.45})
+    expect(player.balance).to eq -5.45
   end
 end
