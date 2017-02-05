@@ -17,6 +17,21 @@ describe PlayerRepository do
         end
     end
 
+    context "when the player has participated in practice" do
+        it "should lad a player from events" do
+            stub_event_store = double
+            event = {
+                :type => "participated_in_practice", 
+                :amount => 3.45,
+                :player_name => "dummy name"
+            }
+            allow(stub_event_store).to receive(:load_events).and_return([event])
+            player_repository = PlayerRepository.new(stub_event_store)
+            player = player_repository.get_player("dummy name")
+            expect(player.balance).to eq 3.45
+        end
+    end
+
     context "when there are multiple events" do
         it "should filter events by player name" do
             stub_event_store = double
