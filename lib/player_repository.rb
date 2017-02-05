@@ -1,8 +1,8 @@
 require 'yaml'
 
 class PlayerRepository
-    def initialize
-        @event_store = EventStore.new
+    def initialize(event_store = EventStore.new)
+        @event_store = event_store
     end
 
     def get_player(name)
