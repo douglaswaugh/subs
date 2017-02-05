@@ -12,7 +12,11 @@ class Player
     @balance
   end
 
-  def handle_transfer_event(event)
+  def handle_event(event)
+    send(event[:type], event)
+  end
+
+  def transfer_received(event)
     @balance = @balance + event[:amount]
   end
 

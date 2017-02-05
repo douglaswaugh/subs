@@ -8,7 +8,7 @@ describe PlayerRepository do
                 event1 = {
                     :id => 1,
                     :player_name => "dummy name",
-                    :type => "transfer",
+                    :type => "transfer_received",
                     :from => "dummy transferer",
                     :to => "dummy receiver",
                     :transfer_type => "coolhurst account",
