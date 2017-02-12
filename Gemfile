@@ -5,3 +5,4 @@ group :development, :test do
 end
 
 gem 'thor'
+gem 'rubyXL'
