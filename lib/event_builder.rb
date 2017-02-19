@@ -7,7 +7,7 @@ class EventBuilder
     @time_service = time_service
     @events = {
       c_fee: "29a2508d-5581-48a0-a286-27b0efafdb7b",
-      transfer_to: "1c1bbb09-da4b-4e69-9835-a69342438ed7"
+      transfer_sent: "1c1bbb09-da4b-4e69-9835-a69342438ed7"
     }
   end
 
@@ -19,7 +19,7 @@ class EventBuilder
     if (event_string == "c fee")
       event_type = :c_fee
     elsif (event_string == "paid" && decimal_amount <= 0)
-      event_type = :transfer_to
+      event_type = :transfer_sent
     end
 
     expected_JSON = {
@@ -31,8 +31,8 @@ class EventBuilder
       amount: decimal_amount.to_s("F")
     }
 
-    if (event_type == :transfer_to)
-      expected_JSON[:transfer_to] = "5a74ba2a-3af9-4cad-8243-71cfda9dfd4a"
+    if (event_type == :transfer_sent)
+      expected_JSON[:transfer_sent_to] = "5a74ba2a-3af9-4cad-8243-71cfda9dfd4a"
     end
 
     return expected_JSON
