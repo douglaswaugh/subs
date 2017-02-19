@@ -75,6 +75,25 @@ describe EventBuilder do
     end
   end
 
+  context("building a booked court event from note") do
+    subject(:event) do
+      event_builder = EventBuilder.new(uuid_service, time_service)
+      return event_builder.from_note("26/12/2016 booking -£18")
+    end
+
+    it("should have standard properties") do
+      has_common_fields(event)
+    end
+
+    it("should have booked court event type id") do
+      expect(event[:event_type_id]).to eq "bcab570e-add5-4082-8928-474508113771"
+    end
+
+    it("should have amount") do
+      expect(event[:amount]).to eq "-18"
+    end
+  end
+
   def has_common_fields(event)
     expect(event[:event_id]).to eq "77b3efc6-031b-4b13-a182-83ac1c48beb6"
     expect(event[:player_id]).to eq "5535f27b-6098-4ae8-9046-bf8971bdb627"

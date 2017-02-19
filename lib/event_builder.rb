@@ -8,7 +8,8 @@ class EventBuilder
     @events = {
       c_fee: "29a2508d-5581-48a0-a286-27b0efafdb7b",
       transfer_sent: "1c1bbb09-da4b-4e69-9835-a69342438ed7",
-      balls_provided: "c219a3fe-bdee-4e21-ae0c-0504916650fd"
+      balls_provided: "c219a3fe-bdee-4e21-ae0c-0504916650fd",
+      court_booked: "bcab570e-add5-4082-8928-474508113771"
     }
   end
 
@@ -23,6 +24,8 @@ class EventBuilder
       event_type = :transfer_sent
     elsif (event_string == "balls")
       event_type = :balls_provided
+    elsif (event_string == "booking")
+      event_type = :court_booked
     end
 
     expected_JSON = {
