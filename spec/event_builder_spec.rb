@@ -29,7 +29,7 @@ describe EventBuilder do
     end
   end
 
-  context("building a transfer recived event from note") do
+  context("building a transfer to event from note") do
     subject(:event) do
       event_builder = EventBuilder.new(uuid_service, time_service)
       return event_builder.from_note("26/12/2016 paid £14.30")
@@ -39,7 +39,7 @@ describe EventBuilder do
       has_common_fields(event)
     end
 
-    it("should have transfer received event type id") do
+    it("should have transfer to event type id") do
       expect(event[:event_type_id]).to eq "1c1bbb09-da4b-4e69-9835-a69342438ed7"
     end
 
