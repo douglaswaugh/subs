@@ -12,13 +12,13 @@ class EventBuilder
   end
 
   def from_note(note)
-    practice_date, event_string, amount = note.match(/([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4})\s+((?<= )[a-z ]*(?= ))\s+-?£(\d+.?\d{0,2})/i).captures
+    practice_date, event_string, amount_sign, amount = note.match(/([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4})\s+((?<= )[a-z ]*(?= ))\s+(-?)£(\d+.?\d{0,2})/i).captures
 
-    decimal_amount = BigDecimal.new(amount)
+      decimal_amount = BigDecimal.new(amount_sign + amount)
 
     if (event_string == "c fee")
       event_type = :c_fee
-    elsif (event_string == "paid" && decimal_amount >= 0)
+    elsif (event_string == "paid" && decimal_amount <= 0)
       event_type = :transfer_to
     end
 

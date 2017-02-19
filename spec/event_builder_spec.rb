@@ -27,6 +27,10 @@ describe EventBuilder do
     it("should have participated in practice event type id") do
       expect(event[:event_type_id]).to eq "29a2508d-5581-48a0-a286-27b0efafdb7b"
     end
+
+    it("should have amount") do
+      expect(event[:amount]).to eq "14.3"
+    end
   end
 
   context("building a transfer to event from note") do
@@ -46,6 +50,10 @@ describe EventBuilder do
     it("should have transfer to") do
       expect(event[:transfer_to]).to eq "5a74ba2a-3af9-4cad-8243-71cfda9dfd4a"
     end
+
+    it("should have amount") do
+      expect(event[:amount]).to eq "-14.3"
+    end
   end
 
   def has_common_fields(event)
@@ -53,6 +61,5 @@ describe EventBuilder do
     expect(event[:player_id]).to eq "5535f27b-6098-4ae8-9046-bf8971bdb627"
     expect(event[:event_date].strftime("%D")).to eq Date.new(2017, 2, 13).strftime("%D")
     expect(event[:practice_date].strftime("%D")).to eq Date.new(2016,12,26).strftime("%D")
-    expect(event[:amount]).to eq "14.3"
   end
 end
