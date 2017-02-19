@@ -32,7 +32,7 @@ describe EventBuilder do
   context("building a transfer to event from note") do
     subject(:event) do
       event_builder = EventBuilder.new(uuid_service, time_service)
-      return event_builder.from_note("26/12/2016 paid £14.30")
+      return event_builder.from_note("26/12/2016 paid -£14.30")
     end
 
     it("should have standard files") do

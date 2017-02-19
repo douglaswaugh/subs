@@ -15,6 +15,12 @@ describe Player do
     expect(player.balance).to eq 5.45
   end
 
+  it "should update balance when transfer sent event processed" do
+    player = Player.new("dummy player name")
+    player.handle_event({:amount => -13.4, :type => "transfer_sent"})
+    expect(player.balance).to eq -13.4
+  end
+
   it "should update balance when participated in practice event processed" do
     player = Player.new("dummy player name")
     player.handle_event({:type => "participated_in_practice", :amount => 3.45 })

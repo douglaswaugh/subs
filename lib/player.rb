@@ -20,6 +20,10 @@ class Player
     @balance = @balance + event[:amount]
   end
 
+  def transfer_sent(event)
+    @balance = @balance + event[:amount]
+  end
+
   def participated_in_practice(event)
     @balance = @balance + event[:amount]
   end
