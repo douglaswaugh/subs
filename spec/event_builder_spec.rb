@@ -2,16 +2,21 @@ require "spec_helper"
 require "json"
 
 describe EventBuilder do
+  let(:uuid_service) do
+    uuid_service = double
+    allow(uuid_service).to receive(:new_uuid).and_return("77b3efc6-031b-4b13-a182-83ac1c48beb6")
+    return uuid_service
+  end
+
+  let(:time_service) do
+    time_service = double
+    allow(time_service).to receive(:now).and_return(Time.new(2017,2,13))
+    return time_service
+  end
+
   context("building a participated event from note") do
     subject(:event) do
-      uuid_service = double
-      allow(uuid_service).to receive(:new_uuid).and_return("77b3efc6-031b-4b13-a182-83ac1c48beb6")
-
-      time_service = double
-      allow(time_service).to receive(:now).and_return(Time.new(2017,2,13))
-
       event_builder = EventBuilder.new(uuid_service, time_service)
-
       event = event_builder.from_note("26/12/2016 c fee £14.30")
     end
 
@@ -26,14 +31,7 @@ describe EventBuilder do
 
   context("building a transfer recived event from note") do
     subject(:event) do
-      uuid_service = double
-      allow(uuid_service).to receive(:new_uuid).and_return("77b3efc6-031b-4b13-a182-83ac1c48beb6")
-
-      time_service = double
-      allow(time_service).to receive(:now).and_return(Time.new(2017,2,13))
-
       event_builder = EventBuilder.new(uuid_service, time_service)
-
       return event_builder.from_note("26/12/2016 paid £14.30")
     end
 
