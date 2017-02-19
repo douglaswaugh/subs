@@ -39,7 +39,7 @@ describe EventBuilder do
       return event_builder.from_note("26/12/2016 paid -£14.30")
     end
 
-    it("should have standard files") do
+    it("should have standard properties") do
       has_common_fields(event)
     end
 
