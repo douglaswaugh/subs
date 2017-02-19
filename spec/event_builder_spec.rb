@@ -56,6 +56,25 @@ describe EventBuilder do
     end
   end
 
+  context("building a balls provided event from note") do
+    subject(:event) do
+      event_builder = EventBuilder.new(uuid_service, time_service)
+      return event_builder.from_note("26/12/2016 balls -£3.50")
+    end
+
+    it("should have standard properties") do
+      has_common_fields(event)
+    end
+
+    it("should have balls provided event type id") do
+      expect(event[:event_type_id]).to eq "c219a3fe-bdee-4e21-ae0c-0504916650fd"
+    end
+
+    it("should have amount") do
+      expect(event[:amount]).to eq "-3.5"
+    end
+  end
+
   def has_common_fields(event)
     expect(event[:event_id]).to eq "77b3efc6-031b-4b13-a182-83ac1c48beb6"
     expect(event[:player_id]).to eq "5535f27b-6098-4ae8-9046-bf8971bdb627"

@@ -7,19 +7,22 @@ class EventBuilder
     @time_service = time_service
     @events = {
       c_fee: "29a2508d-5581-48a0-a286-27b0efafdb7b",
-      transfer_sent: "1c1bbb09-da4b-4e69-9835-a69342438ed7"
+      transfer_sent: "1c1bbb09-da4b-4e69-9835-a69342438ed7",
+      balls_provided: "c219a3fe-bdee-4e21-ae0c-0504916650fd"
     }
   end
 
   def from_note(note)
     practice_date, event_string, amount_sign, amount = note.match(/([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4})\s+((?<= )[a-z ]*(?= ))\s+(-?)£(\d+.?\d{0,2})/i).captures
 
-      decimal_amount = BigDecimal.new(amount_sign + amount)
+    decimal_amount = BigDecimal.new(amount_sign + amount)
 
     if (event_string == "c fee")
       event_type = :c_fee
     elsif (event_string == "paid" && decimal_amount <= 0)
       event_type = :transfer_sent
+    elsif (event_string == "balls")
+      event_type = :balls_provided
     end
 
     expected_JSON = {
