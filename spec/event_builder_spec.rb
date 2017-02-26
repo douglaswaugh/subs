@@ -60,6 +60,33 @@ describe EventBuilder do
     end
   end
 
+  context("building a transfer sent via paypal event from note") do
+    subject(:event) do
+      event_builder = EventBuilder.new(uuid_service, time_service)
+      return event_builder.from_note("26/12/2016 paypal -£14.30")
+    end
+
+    it("should have standard properties") do
+      has_common_fields(event)
+    end
+
+    it("should have transfer sent event type id") do
+      expect(event[:event_type_id]).to eq "1c1bbb09-da4b-4e69-9835-a69342438ed7"
+    end
+
+    it("should have transfer to") do
+      expect(event[:transfer_sent_to]).to eq "5a74ba2a-3af9-4cad-8243-71cfda9dfd4a"
+    end
+
+    it("should have amount") do
+      expect(event[:amount]).to eq "-14.3"
+    end
+
+    it("should have transferred via") do
+      expect(event[:transferred_via]).to eq "paypal"
+    end
+  end
+
   context("building a balls provided event from note") do
     subject(:event) do
       event_builder = EventBuilder.new(uuid_service, time_service)

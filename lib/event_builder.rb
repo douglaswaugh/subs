@@ -21,7 +21,7 @@ class EventBuilder
 
     if (event_string == "c fee")
       event_type = :c_fee
-    elsif (event_string == "paid" && decimal_amount <= 0)
+    elsif ((event_string == "paid" || event_string == "paypal") && decimal_amount <= 0)
       event_type = :transfer_sent
     elsif (event_string == "balls")
       event_type = :balls_provided
@@ -52,7 +52,12 @@ class EventBuilder
 
     if (event_type == :transfer_sent)
       event[:transfer_sent_to] = "5a74ba2a-3af9-4cad-8243-71cfda9dfd4a"
-      event[:transferred_via] = "system"
+
+      if (event_string == "paid")
+        event[:transferred_via] = "system"
+      else
+        event[:transferred_via] = event_string
+      end
     end
 
     if (event_type == :court_booked)
