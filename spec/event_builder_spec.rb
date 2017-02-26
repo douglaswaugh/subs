@@ -105,6 +105,18 @@ describe EventBuilder do
     end
   end
 
+  context("note format") do
+    it("should return true for a note with valid format") do
+      note = "14/01/2017 c fee £3.50"
+      expect(EventBuilder.valid_note?(note)).to eq true
+    end
+
+    it("should return false for a note with invalid format") do
+      note = "this is an invalid note"
+      expect(EventBuilder.valid_note?(note)).to eq false
+    end
+  end
+
   def has_common_fields(event)
     expect(event[:event_id]).to eq "77b3efc6-031b-4b13-a182-83ac1c48beb6"
     expect(event[:player_id]).to eq "5535f27b-6098-4ae8-9046-bf8971bdb627"
