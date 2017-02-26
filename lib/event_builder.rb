@@ -27,6 +27,8 @@ class EventBuilder
       event_type = :balls_provided
     elsif (event_string == "booking")
       event_type = :court_booked
+    elsif (event_string == "pies")
+      event_type = :pies
     else
       raise EventTypeUnknownError.new(), "#{event_string} unknown"
     end
