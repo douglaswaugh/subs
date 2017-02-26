@@ -148,6 +148,13 @@ describe EventBuilder do
     end
   end
 
+  context("carried notes") do
+    it("should return true for a note of type carried") do
+      note = "13/01/2017 carried £34.00"
+      expect(EventBuilder.carried_event?(note)).to eq true
+    end
+  end
+
   def has_common_fields(event)
     expect(event[:event_id]).to eq "77b3efc6-031b-4b13-a182-83ac1c48beb6"
     expect(event[:player_id]).to eq "5535f27b-6098-4ae8-9046-bf8971bdb627"

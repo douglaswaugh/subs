@@ -74,4 +74,9 @@ class EventBuilder
 
     return false
   end
+
+  def self.carried_event?(note)
+    practice_date, event_string, amount_sign, amount = note.match(@@note_pattern).captures
+    return (event_string == "carried")
+  end
 end
