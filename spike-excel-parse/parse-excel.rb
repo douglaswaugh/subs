@@ -35,22 +35,21 @@ worksheet.each_with_index do |row,index|
 end
 
 events = {
-  participated_in_practice: "03ecf736-732f-4dfe-b67c-92869dc5e93a"
-  transfer_received: "1c1bbb09-da4b-4e69-9835-a69342438ed7"
-  provided_balls: "c219a3fe-bdee-4e21-ae0c-0504916650fd"
-  booked_court: "bcab570e-add5-4082-8928-474508113771"
+  participated_in_practice: "03ecf736-732f-4dfe-b67c-92869dc5e93a",
+  transfer_received: "1c1bbb09-da4b-4e69-9835-a69342438ed7",
+  provided_balls: "c219a3fe-bdee-4e21-ae0c-0504916650fd",
+  booked_court: "bcab570e-add5-4082-8928-474508113771",
   paid: "355d9ff9-b41d-4842-870c-5a1e26e5342e"
 }
 
 player_comments.keys.each do |key|
-  puts key.to_s
   player_comments[key].each do |event|
-    if (event.downcase.contains "c fee")
-      event = {}
-      event[:event_id] = SecureRandom.uuid
-      event[:player_id] = key.to_s
-      event[:event_type] = events[:participated_in_practice]
-      event[:amount] = 
-    end
+    puts event.inspect
+    #if (event.downcase.contains "c fee")
+    #  event = {}
+    #  event[:event_id] = SecureRandom.uuid
+    #  event[:player_id] = key.to_s
+    #  event[:event_type] = events[:participated_in_practice]
+    #end
   end
 end
