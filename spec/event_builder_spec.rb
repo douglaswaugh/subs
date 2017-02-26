@@ -33,6 +33,30 @@ describe EventBuilder do
     end
   end
 
+  context("transfer sent events") do
+    context("negative transfers sent") do
+      subject(:event) do
+        event_builder = EventBuilder.new(uuid_service, time_service)
+        return event_builder.from_note("26/12/2016 paid -£14.30")
+      end
+
+      it("should have a negative amount", focus: true) do
+        expect(event[:amount]).to eq "-14.3"
+      end
+    end
+
+    context("positive transfers sent") do
+      subject(:event) do
+        event_builder = EventBuilder.new(uuid_service, time_service)
+        return event_builder.from_note("26/12/2016 paid £14.30")
+      end
+
+      it "should have a negative amount", :focus => true do
+        expect(event[:amount]).to eq "-14.3"
+      end
+    end
+  end
+
   context("building a transfer sent via system event from note") do
     subject(:event) do
       event_builder = EventBuilder.new(uuid_service, time_service)
