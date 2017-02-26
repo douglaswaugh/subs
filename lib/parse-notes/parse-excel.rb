@@ -1,5 +1,6 @@
 require 'rubyXL'
 require 'securerandom'
+require_relative '../note_line_splitter'
 
 def player_name_from_row(row)
   if (row[0] && row[0].value)
@@ -8,7 +9,7 @@ def player_name_from_row(row)
   return nil
 end
 
-workbook = RubyXL::Parser.parse("/Users/douglas/code/subs/spike-excel-parse/cleaned-7th-team-monies-owed.xlsx")
+workbook = RubyXL::Parser.parse("./lib//parse-notes/cleaned-7th-team-monies-owed.xlsx")
 
 worksheet = workbook.worksheets[0]
 
@@ -20,7 +21,7 @@ comments.first.comment_list.each do |comment|
   if (!comments_by_player[row_reference])
     comments_by_player[row_reference] = []
   end
-  comments_by_player[row_reference] = comments_by_player[row_reference] + comment.text.to_s.split('\n')
+  comments_by_player[row_reference] = comments_by_player[row_reference] + NoteLineSplitter.split(comment.text.to_s)
 end
 
 players = {}
