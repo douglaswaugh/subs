@@ -14,7 +14,7 @@ class EventBuilder
   end
 
   def get_event_type_from_event_string(event_string, decimal_amount)
-    event_type = "unknown".to_sym 
+    event_type = "unknown".to_sym
 
     if (event_string == "c fee")
       event_type = :c_fee
@@ -24,6 +24,8 @@ class EventBuilder
       event_type = :balls_provided
     elsif (event_string == "booking")
       event_type = :court_booked
+    else
+      raise EventTypeUnknownError.new(), "#{event_string} unknown"
     end
 
     return event_type
@@ -54,5 +56,9 @@ class EventBuilder
     end
 
     return expected_JSON
+  end
+
+  def can_convert_note(note)
+
   end
 end

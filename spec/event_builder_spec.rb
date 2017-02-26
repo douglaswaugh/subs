@@ -98,6 +98,13 @@ describe EventBuilder do
     end
   end
 
+  context("unknown event type") do
+    it("should throw exception") do
+      event_builder = EventBuilder.new(uuid_service, time_service)
+      expect{event_builder.from_note("26/12/2016 unknown event £3.50")}.to raise_error(EventTypeUnknownError)
+    end
+  end
+
   def has_common_fields(event)
     expect(event[:event_id]).to eq "77b3efc6-031b-4b13-a182-83ac1c48beb6"
     expect(event[:player_id]).to eq "5535f27b-6098-4ae8-9046-bf8971bdb627"

@@ -1,0 +1,2 @@
+class EventTypeUnknownError < StandardError
+end
