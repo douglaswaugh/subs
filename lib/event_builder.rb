@@ -13,10 +13,8 @@ class EventBuilder
     }
   end
 
-  def from_note(note)
-    practice_date, event_string, amount_sign, amount = note.match(/([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4})\s+((?<= )[a-z ]*(?= ))\s+(-?)£(\d+.?\d{0,2})/i).captures
-
-    decimal_amount = BigDecimal.new(amount_sign + amount)
+  def get_event_type_from_event_string(event_string, decimal_amount)
+    event_type = "unknown".to_sym 
 
     if (event_string == "c fee")
       event_type = :c_fee
@@ -27,6 +25,16 @@ class EventBuilder
     elsif (event_string == "booking")
       event_type = :court_booked
     end
+
+    return event_type
+  end
+
+  def from_note(note)
+    practice_date, event_string, amount_sign, amount = note.match(/([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4})\s+((?<= )[a-z ]*(?= ))\s+(-?)£(\d+.?\d{0,2})/i).captures
+
+    decimal_amount = BigDecimal.new(amount_sign + amount)
+
+    event_type = get_event_type_from_event_string(event_string, decimal_amount)
 
     expected_JSON = {
       event_id: "77b3efc6-031b-4b13-a182-83ac1c48beb6",
