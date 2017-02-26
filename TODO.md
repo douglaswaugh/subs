@@ -11,3 +11,13 @@ Lots of different types of events
 * transfered money by paypal
 * provided extras
 * took part in practice
+
+Things I've just noticed
+---
+
+### bad names
+practice_note in event builder
+expected json in event builder
+
+### other things
+have to pass in player name and practice date to event builder from note
