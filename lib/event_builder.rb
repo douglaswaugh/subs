@@ -11,6 +11,7 @@ class EventBuilder
       balls_provided: "c219a3fe-bdee-4e21-ae0c-0504916650fd",
       court_booked: "bcab570e-add5-4082-8928-474508113771"
     }
+    @note_pattern = /([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4})\s+((?<= )[a-z ]*(?= ))\s+(-?)£(\d+.?\d{0,2})/i
   end
 
   def get_event_type_from_event_string(event_string, decimal_amount)
@@ -32,7 +33,7 @@ class EventBuilder
   end
 
   def from_note(note)
-    practice_date, event_string, amount_sign, amount = note.match(/([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4})\s+((?<= )[a-z ]*(?= ))\s+(-?)£(\d+.?\d{0,2})/i).captures
+    practice_date, event_string, amount_sign, amount = note.match(@note_pattern).captures
 
     decimal_amount = BigDecimal.new(amount_sign + amount)
 
