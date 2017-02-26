@@ -40,7 +40,7 @@ class EventBuilder
 
     event_type = get_event_type_from_event_string(event_string, decimal_amount)
 
-    expected_JSON = {
+    event = {
       event_id: "77b3efc6-031b-4b13-a182-83ac1c48beb6",
       player_id: "5535f27b-6098-4ae8-9046-bf8971bdb627",
       event_type_id: @events[event_type],
@@ -50,14 +50,14 @@ class EventBuilder
     }
 
     if (event_type == :transfer_sent)
-      expected_JSON[:transfer_sent_to] = "5a74ba2a-3af9-4cad-8243-71cfda9dfd4a"
+      event[:transfer_sent_to] = "5a74ba2a-3af9-4cad-8243-71cfda9dfd4a"
     end
 
     if (event_type == :court_booked)
-      expected_JSON[:court_booked_date] = Time.parse(practice_date)
+      event[:court_booked_date] = Time.parse(practice_date)
     end
 
-    return expected_JSON
+    return event
   end
 
   def self.valid_note?(note)
