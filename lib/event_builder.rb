@@ -41,6 +41,10 @@ class EventBuilder
       expected_JSON[:transfer_sent_to] = "5a74ba2a-3af9-4cad-8243-71cfda9dfd4a"
     end
 
+    if (event_type == :court_booked)
+      expected_JSON[:court_booked_date] = Time.parse(practice_date)
+    end
+
     return expected_JSON
   end
 end

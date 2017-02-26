@@ -90,7 +90,11 @@ describe EventBuilder do
     end
 
     it("should have amount") do
-      expect(event[:amount]).to eq "-18"
+      expect(event[:amount]).to eq "-18.0"
+    end
+
+    it("should have court booking date") do
+      expect(event[:court_booked_date].strftime("%D")).to eq Date.new(2016,12,26).strftime("%D")
     end
   end
 
