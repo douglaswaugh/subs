@@ -1,5 +1,6 @@
 require "bigdecimal"
 require "time"
+require_relative "event_type_unknown_error"
 
 class EventBuilder
   @@note_pattern = /([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4})\s+((?<= )[a-z ]*(?= ))\s+(-?)£(\d+.?\d{0,2})/i
@@ -51,6 +52,7 @@ class EventBuilder
 
     if (event_type == :transfer_sent)
       event[:transfer_sent_to] = "5a74ba2a-3af9-4cad-8243-71cfda9dfd4a"
+      event[:transferred_via] = "system"
     end
 
     if (event_type == :court_booked)

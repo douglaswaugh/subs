@@ -33,7 +33,7 @@ describe EventBuilder do
     end
   end
 
-  context("building a transfer sent event from note") do
+  context("building a transfer sent via system event from note") do
     subject(:event) do
       event_builder = EventBuilder.new(uuid_service, time_service)
       return event_builder.from_note("26/12/2016 paid -£14.30")
@@ -53,6 +53,10 @@ describe EventBuilder do
 
     it("should have amount") do
       expect(event[:amount]).to eq "-14.3"
+    end
+
+    it("should have transferred via") do 
+      expect(event[:transferred_via]).to eq "system"
     end
   end
 
