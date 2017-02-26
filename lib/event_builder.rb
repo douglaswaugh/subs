@@ -41,6 +41,8 @@ class EventBuilder
   def from_note(note)
     practice_date, event_string, amount_sign, amount = note.match(@@note_pattern).captures
 
+    event_string = event_string.downcase
+
     decimal_amount = BigDecimal.new(amount_sign + amount)
 
     event_type = get_event_type_from_event_string(event_string, decimal_amount)
