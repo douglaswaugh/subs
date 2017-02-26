@@ -21,3 +21,5 @@ expected json in event builder
 
 ### other things
 have to pass in player name and practice date to event builder from note
+event builder uses the same id for all events
+event builder spec checks for the same event id for all events
