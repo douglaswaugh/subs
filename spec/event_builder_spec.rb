@@ -120,6 +120,17 @@ describe EventBuilder do
         expect(event[:event_type_id]).to eq '6dc04656-184a-4ae1-99b9-e726d6988ba9'
       end
     end
+
+    context('from note with transfer event string') do
+      subject(:event) do
+        event_builder = EventBuilder.new(uuid_service, time_service)
+        return event_builder.from_note("26/12/2016 transfer £23.35")
+      end
+
+      it('should have transfer sent event type id') do
+        expect(event[:event_type_id]).to eq '6dc04656-184a-4ae1-99b9-e726d6988ba9'
+      end
+    end
   end
 
   context("building a transfer sent via paypal event from note") do
