@@ -187,9 +187,6 @@ describe EventBuilder do
     end
   end
 
-  context("building a transfer received via system event from note") do
-  end
-
   context("building a balls provided event from note") do
     subject(:event) do
       event_builder = EventBuilder.new(uuid_service, time_service)
