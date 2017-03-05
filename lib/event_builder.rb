@@ -14,7 +14,8 @@ class EventBuilder
       balls_provided: "c219a3fe-bdee-4e21-ae0c-0504916650fd",
       court_booked: "bcab570e-add5-4082-8928-474508113771",
       transfer_received: '6dc04656-184a-4ae1-99b9-e726d6988ba9',
-      pies: '3f211c34-6257-47fa-85c4-38d68530eba9'
+      pies: '3f211c34-6257-47fa-85c4-38d68530eba9',
+      match_fee: 'edbccc86-d6ad-4057-a3c5-8d7a54f9c507'
     }
     @other_pattern = /.*/
   end
@@ -38,6 +39,8 @@ class EventBuilder
       event_type = :cancelled
     elsif (event_string == 'trans' || event_string == 'trnsfr' || event_string.include?('transfer'))
       event_type = :transfer_received
+    elsif (event_string == "m fee")
+      event_type = :match_fee
     else
       raise EventTypeUnknownError.new(), "#{event_string} unknown, amount: #{decimal_amount.to_s}"
     end

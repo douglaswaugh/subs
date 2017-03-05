@@ -308,6 +308,27 @@ describe EventBuilder do
     end
   end
 
+  context('building a match event from note') do
+    context('with m fee event string') do
+      subject(:event) do
+        event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
+        return event_builder.from_note('26/12/2016 m fee £7.50')
+      end
+
+      it('should have standard properties') do
+        has_common_fields(event)
+      end
+
+      it("should have amount") do
+        expect(event[:amount]).to eq "7.5"
+      end
+
+      it('should have the match fee event type id') do
+        expect(event[:event_type_id]).to eq 'edbccc86-d6ad-4057-a3c5-8d7a54f9c507'
+      end
+    end
+  end
+
   context("unknown event type") do
     it("should throw exception") do
       event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
