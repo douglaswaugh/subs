@@ -4,9 +4,10 @@ require_relative "event_type_unknown_error"
 
 class EventBuilder
   @@note_pattern = /([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4})\s+((?<= )[a-z ]*(?= ))\s+(-?)£(\d+.?\d{0,2})/i
-  def initialize(uuid_service, time_service)
+  def initialize(uuid_service, time_service, user_service)
     @uuid_service = uuid_service
     @time_service = time_service
+    @user_service = user_service
     @events = {
       c_fee: "29a2508d-5581-48a0-a286-27b0efafdb7b",
       transfer_sent: "1c1bbb09-da4b-4e69-9835-a69342438ed7",
@@ -35,7 +36,7 @@ class EventBuilder
       event_type = :wine
     elsif (event_string == "cancelled")
       event_type = :cancelled
-    elsif (event_string == 'trans' || event_string == 'trnsfr' || event_string == 'transfer')
+    elsif (event_string == 'trans' || event_string == 'trnsfr' || event_string.include?('transfer'))
       event_type = :transfer_received
     else
       raise EventTypeUnknownError.new(), "#{event_string} unknown, amount: #{decimal_amount.to_s}"
@@ -75,7 +76,13 @@ class EventBuilder
     end
 
     if (event_type == :transfer_received)
-      event[:transfer_sent_from] = '5a74ba2a-3af9-4cad-8243-71cfda9dfd4a'
+      if (event_string =~ /transfer from (.+)/)
+        transfer_sender_name = event_string.match(/transfer from (.+)/).captures
+        transfer_sender_id = @user_service.get_user_id_by_name(transfer_sender_name)
+        event[:transfer_sent_from] = transfer_sender_id
+      else
+        event[:transfer_sent_from] = '5a74ba2a-3af9-4cad-8243-71cfda9dfd4a'
+      end
       event[:transferred_via] = 'system'
     end
 
