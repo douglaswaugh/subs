@@ -14,15 +14,15 @@ describe EventBuilder do
     return time_service
   end
 
-  let(:user_service) do
-    user_service = double
-    allow(user_service).to receive(:get_user_by_name).and_return('dfff4c34-6300-49c7-b9f0-a1c00a460fa8')
-    return user_service
+  let(:team_member_service) do
+    team_member_service = double
+    allow(team_member_service).to receive(:get_user_by_name).and_return('dfff4c34-6300-49c7-b9f0-a1c00a460fa8')
+    return team_member_service
   end
 
   context("building a participated event from note") do
     subject(:event) do
-      event_builder = EventBuilder.new(uuid_service, time_service, user_service)
+      event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
       event = event_builder.from_note("26/12/2016 c fee £14.30")
     end
 
@@ -42,7 +42,7 @@ describe EventBuilder do
   context("transfer sent events") do
     context("negative transfers sent") do
       subject(:event) do
-        event_builder = EventBuilder.new(uuid_service, time_service, user_service)
+        event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
         return event_builder.from_note("26/12/2016 paid -£14.30")
       end
 
@@ -53,7 +53,7 @@ describe EventBuilder do
 
     context("positive transfers sent") do
       subject(:event) do
-        event_builder = EventBuilder.new(uuid_service, time_service, user_service)
+        event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
         return event_builder.from_note("26/12/2016 paid £14.30")
       end
 
@@ -65,7 +65,7 @@ describe EventBuilder do
 
   context("building a transfer sent via system event from note") do
     subject(:event) do
-      event_builder = EventBuilder.new(uuid_service, time_service, user_service)
+      event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
       return event_builder.from_note("26/12/2016 paid -£14.30")
     end
 
@@ -92,7 +92,7 @@ describe EventBuilder do
 
   context("building a transfer received via system event from note") do
     subject(:event) do
-      event_builder = EventBuilder.new(uuid_service, time_service, user_service)
+      event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
       return event_builder.from_note("26/12/2016 trans £23.35")
     end
 
@@ -118,7 +118,7 @@ describe EventBuilder do
 
     context('from note with trnsfr event string') do
       subject(:event) do
-        event_builder = EventBuilder.new(uuid_service, time_service, user_service)
+        event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
         return event_builder.from_note("26/12/2016 trnsfr £23.35")
       end
 
@@ -129,7 +129,7 @@ describe EventBuilder do
 
     context('from note with transfer event string') do
       subject(:event) do
-        event_builder = EventBuilder.new(uuid_service, time_service, user_service)
+        event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
         return event_builder.from_note("26/12/2016 transfer £23.35")
       end
 
@@ -139,14 +139,14 @@ describe EventBuilder do
     end
 
     context('from note with transfer event string and named sender') do
-      let(:user_service) do
-        user_service = double
-        allow(user_service).to receive(:get_user_id_by_name).and_return('dfff4c34-6300-49c7-b9f0-a1c00a460fa8')
-        return user_service
+      let(:team_member_service) do
+        team_member_service = double
+        allow(team_member_service).to receive(:get_team_member_id_by_name).and_return('dfff4c34-6300-49c7-b9f0-a1c00a460fa8')
+        return team_member_service
       end
 
       subject(:event) do
-        event_builder = EventBuilder.new(uuid_service, time_service, user_service)
+        event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
         return event_builder.from_note("26/12/2016 transfer from michael £23.35")
       end
 
@@ -158,7 +158,7 @@ describe EventBuilder do
 
   context("building a transfer sent via paypal event from note") do
     subject(:event) do
-      event_builder = EventBuilder.new(uuid_service, time_service, user_service)
+      event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
       return event_builder.from_note("26/12/2016 paypal -£14.30")
     end
 
@@ -185,7 +185,7 @@ describe EventBuilder do
 
   context("building a transfer sent via cash event from note") do
     subject(:event) do
-      event_builder = EventBuilder.new(uuid_service, time_service, user_service)
+      event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
       return event_builder.from_note("26/12/2016 cash -£14.30")
     end
 
@@ -212,7 +212,7 @@ describe EventBuilder do
 
   context("building a balls provided event from note") do
     subject(:event) do
-      event_builder = EventBuilder.new(uuid_service, time_service, user_service)
+      event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
       return event_builder.from_note("26/12/2016 balls -£3.50")
     end
 
@@ -231,7 +231,7 @@ describe EventBuilder do
 
   context("building a booked court event from note") do
     subject(:event) do
-      event_builder = EventBuilder.new(uuid_service, time_service, user_service)
+      event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
       return event_builder.from_note("26/12/2016 booking -£18")
     end
 
@@ -254,7 +254,7 @@ describe EventBuilder do
 
   context("building a pies event from note") do
     subject(:event) do
-      event_builder = EventBuilder.new(uuid_service, time_service, user_service)
+      event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
       return event_builder.from_note("26/12/2016 pies £18")
     end
 
@@ -268,7 +268,7 @@ describe EventBuilder do
 
     context('with event string m pies') do
       subject(:event) do
-        event_builder = EventBuilder.new(uuid_service, time_service, user_service)
+        event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
         return event_builder.from_note("26/12/2016 m pies £18")
       end
 
@@ -280,7 +280,7 @@ describe EventBuilder do
 
   context("building a wine event from note") do
     subject(:event) do
-      event_builder = EventBuilder.new(uuid_service, time_service, user_service)
+      event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
       return event_builder.from_note("26/12/2016 wine £18")
     end
 
@@ -295,7 +295,7 @@ describe EventBuilder do
 
   context("building a share of cancellation event from note") do
     subject(:event) do
-      event_builder = EventBuilder.new(uuid_service, time_service, user_service)
+      event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
       return event_builder.from_note("26/12/2016 cancelled £0.38")
     end
 
@@ -310,7 +310,7 @@ describe EventBuilder do
 
   context("unknown event type") do
     it("should throw exception") do
-      event_builder = EventBuilder.new(uuid_service, time_service, user_service)
+      event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
       expect{event_builder.from_note("26/12/2016 unknown event £3.50")}.to raise_error(EventTypeUnknownError)
     end
   end
