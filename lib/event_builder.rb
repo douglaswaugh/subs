@@ -31,6 +31,8 @@ class EventBuilder
       event_type = :pies
     elsif (event_string == "wine")
       event_type = :wine
+    elsif (event_string == "cancelled")
+      event_type = :cancelled
     else
       raise EventTypeUnknownError.new(), "#{event_string} unknown"
     end

@@ -210,6 +210,23 @@ describe EventBuilder do
     end
   end
 
+  context("building a share of cancellation event from note") do
+    subject(:event) do
+      event_builder = EventBuilder.new(uuid_service, time_service)
+      return event_builder.from_note("26/12/2016 cancelled £0.38")
+    end
+
+    it("should have standard properties") do
+      has_common_fields(event)
+    end
+
+    it("should have amount") do
+      expect(event[:amount]).to eq "0.38"
+    end
+
+    it("should ")
+  end
+
   context("unknown event type") do
     it("should throw exception") do
       event_builder = EventBuilder.new(uuid_service, time_service)
