@@ -1,8 +1,6 @@
 class TeamMemberService
-  def initialize
-    @ids_by_name = {
-      michael: 'ccd3a910-012d-4948-8fb3-19c5651d5561'
-    }
+  def initialize(ids_by_name)
+    @ids_by_name = ids_by_name
   end
 
   def get_team_member_id_by_name(name)
