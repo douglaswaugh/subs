@@ -12,7 +12,8 @@ class EventBuilder
       transfer_sent: "1c1bbb09-da4b-4e69-9835-a69342438ed7",
       balls_provided: "c219a3fe-bdee-4e21-ae0c-0504916650fd",
       court_booked: "bcab570e-add5-4082-8928-474508113771",
-      transfer_received: '6dc04656-184a-4ae1-99b9-e726d6988ba9'
+      transfer_received: '6dc04656-184a-4ae1-99b9-e726d6988ba9',
+      pies: '3f211c34-6257-47fa-85c4-38d68530eba9'
     }
     @other_pattern = /.*/
   end
@@ -28,7 +29,7 @@ class EventBuilder
       event_type = :balls_provided
     elsif (event_string == "booking")
       event_type = :court_booked
-    elsif (event_string == "pies")
+    elsif (event_string == "pies" || event_string == 'm pies')
       event_type = :pies
     elsif (event_string == "wine")
       event_type = :wine

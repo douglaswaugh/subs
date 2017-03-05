@@ -245,6 +245,17 @@ describe EventBuilder do
     it("should have amount") do
       expect(event[:amount]).to eq "18.0"
     end
+
+    context('with event string m pies') do
+      subject(:event) do
+        event_builder = EventBuilder.new(uuid_service, time_service)
+        return event_builder.from_note("26/12/2016 m pies £18")
+      end
+
+      it('should have pies event type id') do
+        expect(event[:event_type_id]).to eq '3f211c34-6257-47fa-85c4-38d68530eba9'
+      end
+    end
   end
 
   context("building a wine event from note") do
