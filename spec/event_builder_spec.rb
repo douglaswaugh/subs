@@ -84,7 +84,7 @@ describe EventBuilder do
     end
   end
 
-  context("building a transfer recevied via system event from note") do
+  context("building a transfer received via system event from note") do
     subject(:event) do
       event_builder = EventBuilder.new(uuid_service, time_service)
       return event_builder.from_note("26/12/2016 trans £23.35")
