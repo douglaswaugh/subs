@@ -23,6 +23,8 @@ expected json in event builder
 have to pass in player name and practice date to event builder from note
 event builder uses the same id for all events
 event builder spec checks for the same event id for all events
+build user service
+build event service
 
 ### notes
 how to handle carried events
