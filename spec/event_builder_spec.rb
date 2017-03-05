@@ -84,6 +84,33 @@ describe EventBuilder do
     end
   end
 
+  context("building a transfer recevied via system event from note") do
+    subject(:event) do
+      event_builder = EventBuilder.new(uuid_service, time_service)
+      return event_builder.from_note("26/12/2016 trans £23.35")
+    end
+
+    it('should have standard properties') do
+      has_common_fields(event)
+    end
+
+    it('should have transfer sent event type id') do
+      expect(event[:event_type_id]).to eq "6dc04656-184a-4ae1-99b9-e726d6988ba9"
+    end
+
+    it('should have transfer from') do
+      expect(event[:transfer_sent_from]).to eq "5a74ba2a-3af9-4cad-8243-71cfda9dfd4a"
+    end
+
+    it('should have amount') do
+      expect(event[:amount]).to eq '23.35'
+    end
+
+    it('should have transferred via') do
+      expect(event[:transferred_via]).to eq 'system'
+    end
+  end
+
   context("building a transfer sent via paypal event from note") do
     subject(:event) do
       event_builder = EventBuilder.new(uuid_service, time_service)
@@ -136,6 +163,9 @@ describe EventBuilder do
     it("should have transferred via") do
       expect(event[:transferred_via]).to eq "cash"
     end
+  end
+
+  context("building a transfer received via system event from note") do
   end
 
   context("building a balls provided event from note") do
@@ -223,8 +253,6 @@ describe EventBuilder do
     it("should have amount") do
       expect(event[:amount]).to eq "0.38"
     end
-
-    it("should ")
   end
 
   context("unknown event type") do

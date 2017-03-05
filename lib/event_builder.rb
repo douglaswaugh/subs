@@ -11,7 +11,8 @@ class EventBuilder
       c_fee: "29a2508d-5581-48a0-a286-27b0efafdb7b",
       transfer_sent: "1c1bbb09-da4b-4e69-9835-a69342438ed7",
       balls_provided: "c219a3fe-bdee-4e21-ae0c-0504916650fd",
-      court_booked: "bcab570e-add5-4082-8928-474508113771"
+      court_booked: "bcab570e-add5-4082-8928-474508113771",
+      transfer_received: '6dc04656-184a-4ae1-99b9-e726d6988ba9'
     }
     @other_pattern = /.*/
   end
@@ -33,8 +34,10 @@ class EventBuilder
       event_type = :wine
     elsif (event_string == "cancelled")
       event_type = :cancelled
+    elsif (event_string == 'trans')
+      event_type = :transfer_received
     else
-      raise EventTypeUnknownError.new(), "#{event_string} unknown"
+      raise EventTypeUnknownError.new(), "#{event_string} unknown, amount: #{decimal_amount.to_s}"
     end
 
     return event_type
@@ -68,6 +71,11 @@ class EventBuilder
       end
 
       event[:amount] = (0 - decimal_amount.abs).to_s("F")
+    end
+
+    if (event_type == :transfer_received)
+      event[:transfer_sent_from] = '5a74ba2a-3af9-4cad-8243-71cfda9dfd4a'
+      event[:transferred_via] = 'system'
     end
 
     if (event_type == :court_booked)
