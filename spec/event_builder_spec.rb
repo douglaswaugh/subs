@@ -251,6 +251,16 @@ describe EventBuilder do
       note = "13/01/2017 carried £34.00"
       expect(EventBuilder.carried_event?(note)).to eq true
     end
+
+    it("should return false for a note not of type carried") do
+      note = "13/01/2017 some other event £30.00"
+      expect(EventBuilder.carried_event?(note)).to eq false
+    end
+
+    it("should be insensitive to case") do
+      note = "13/01/2017 cArRiEd £23.53"
+      expect(EventBuilder.carried_event?(note)).to eq true
+    end
   end
 
   def has_common_fields(event)
