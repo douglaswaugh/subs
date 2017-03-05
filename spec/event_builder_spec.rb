@@ -327,6 +327,16 @@ describe EventBuilder do
         expect(event[:event_type_id]).to eq 'edbccc86-d6ad-4057-a3c5-8d7a54f9c507'
       end
     end
+    context('with match event string') do
+      subject(:event) do
+        event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
+        return event_builder.from_note('26/12/2016 match £7.50')
+      end
+
+      it('should have the match fee event type id') do
+        expect(event[:event_type_id]).to eq 'edbccc86-d6ad-4057-a3c5-8d7a54f9c507'
+      end
+    end
   end
 
   context("unknown event type") do

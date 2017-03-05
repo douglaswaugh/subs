@@ -39,7 +39,7 @@ class EventBuilder
       event_type = :cancelled
     elsif (event_string == 'trans' || event_string == 'trnsfr' || event_string.include?('transfer'))
       event_type = :transfer_received
-    elsif (event_string == "m fee")
+    elsif (event_string == "m fee" || event_string == 'match')
       event_type = :match_fee
     else
       raise EventTypeUnknownError.new(), "#{event_string} unknown, amount: #{decimal_amount.to_s}"
