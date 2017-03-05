@@ -34,7 +34,7 @@ class EventBuilder
       event_type = :wine
     elsif (event_string == "cancelled")
       event_type = :cancelled
-    elsif (event_string == 'trans')
+    elsif (event_string == 'trans' || event_string == 'trnsfr')
       event_type = :transfer_received
     else
       raise EventTypeUnknownError.new(), "#{event_string} unknown, amount: #{decimal_amount.to_s}"
