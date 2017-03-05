@@ -23,3 +23,13 @@ expected json in event builder
 have to pass in player name and practice date to event builder from note
 event builder uses the same id for all events
 event builder spec checks for the same event id for all events
+
+### notes
+how to handle carried events
+* ignore them
+* ignore all events before them
+* ignore all amounts in events before them
+* ignore all of them apart from the first one. set amount to carried amount on first carried event.
+
+### non-note events
+cells with dates but no notes still represents participation in practice. could make these participation events of amount 0
