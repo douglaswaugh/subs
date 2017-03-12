@@ -1,6 +1,11 @@
 require 'rubyXL'
 require 'securerandom'
+require 'json'
 require_relative '../note_line_splitter'
+require_relative '../event_builder'
+require_relative '../time_service'
+require_relative '../uuid_service'
+require_relative '../team_member_service'
 
 def player_name_from_row(row)
   if (row[0] && row[0].value)
@@ -15,7 +20,7 @@ worksheet = workbook.worksheets[0]
 
 comments = worksheet.comments
 
-comments_by_player = []
+comments_by_player = {}
 comments.first.comment_list.each do |comment|
   row_reference = RubyXL::Reference.ref2ind(comment.ref.to_s)[0]
   if (!comments_by_player[row_reference])
@@ -24,13 +29,15 @@ comments.first.comment_list.each do |comment|
   comments_by_player[row_reference] = comments_by_player[row_reference] + NoteLineSplitter.split(comment.text.to_s)
 end
 
-players = {}
+player_ids_by_name = {}
+player_names_by_id = {}
 player_comments = {}
 worksheet.each_with_index do |row,index|
   player_name = player_name_from_row(row)
   if (player_name)
     player_id = SecureRandom.uuid
-    players[player_name.to_s] = player_id
+    player_ids_by_name[player_name.to_sym] = player_id
+    player_names_by_id[player_id.to_sym] = player_name
     player_comments[player_id.to_sym] = comments_by_player[index]
   end
 end
@@ -43,14 +50,13 @@ events = {
   paid: "355d9ff9-b41d-4842-870c-5a1e26e5342e"
 }
 
+event_builder = EventBuilder.new(UUIDService.new, TimeService.new, TeamMemberService.new(player_ids_by_name))
+
 player_comments.keys.each do |key|
-  player_comments[key].each do |event|
-    puts event.inspect
-    #if (event.downcase.contains "c fee")
-    #  event = {}
-    #  event[:event_id] = SecureRandom.uuid
-    #  event[:player_id] = key.to_s
-    #  event[:event_type] = events[:participated_in_practice]
-    #end
+  puts player_names_by_id[key]
+  player_comments[key].each do |note|
+    if (EventBuilder.valid_note?(note) && !EventBuilder.carried_event?(note))
+      puts event_builder.from_note(note).to_json
+    end
   end
 end
