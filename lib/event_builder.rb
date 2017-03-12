@@ -15,7 +15,10 @@ class EventBuilder
       court_booked: "bcab570e-add5-4082-8928-474508113771",
       transfer_received: '6dc04656-184a-4ae1-99b9-e726d6988ba9',
       pies: '3f211c34-6257-47fa-85c4-38d68530eba9',
-      match_fee: 'edbccc86-d6ad-4057-a3c5-8d7a54f9c507'
+      match_fee: 'edbccc86-d6ad-4057-a3c5-8d7a54f9c507',
+      championship_fee: 'eb2b00b6-9507-4828-a5d3-dfe130ef62e8',
+      strings_provided: '1e18bdcc-90e1-439d-b5d0-5508d1234e9d',
+      ladder_c_fee: '6abd785c-3f66-4937-a5a4-6c9b4a1c82c5'
     }
     @other_pattern = /.*/
   end
@@ -25,7 +28,7 @@ class EventBuilder
 
     if (event_string == "c fee")
       event_type = :c_fee
-    elsif (event_string == "paid" || event_string == "paypal" || event_string == "cash")
+    elsif (event_string == "paid" || event_string == "paypal" || event_string == "cash" || event_string == "b trans")
       event_type = :transfer_sent
     elsif (event_string == "balls")
       event_type = :balls_provided
@@ -41,6 +44,12 @@ class EventBuilder
       event_type = :transfer_received
     elsif (event_string == "m fee" || event_string == 'match')
       event_type = :match_fee
+    elsif (event_string == "champ")
+      event_type = :championship_fee
+    elsif (event_string == "strings")
+      event_type = :strings_provided
+    elsif (event_string == "ladder")
+      event_type = :ladder_c_fee
     else
       raise EventTypeUnknownError.new(), "#{event_string} unknown, amount: #{decimal_amount.to_s}"
     end
@@ -58,11 +67,11 @@ class EventBuilder
     event_type = get_event_type_from_event_string(event_string, decimal_amount)
 
     event = {
-      event_id: "77b3efc6-031b-4b13-a182-83ac1c48beb6",
-      player_id: "5535f27b-6098-4ae8-9046-bf8971bdb627",
+      event_id: "77b3efc6-031b-4b13-a182-83ac1c48beb6", # TODO give each event its own event ID
+      player_id: "5535f27b-6098-4ae8-9046-bf8971bdb627", # TODO get proper player ID
       event_type_id: @events[event_type],
       event_date: @time_service.now,
-      practice_date: Time.parse(practice_date),
+      practice_date: Time.parse(practice_date), # TODO not relavant for every event
       amount: decimal_amount.to_s("F")
     }
 
@@ -71,6 +80,8 @@ class EventBuilder
 
       if (event_string == "paid")
         event[:transferred_via] = "system"
+      elsif (event_string == "b trans")
+        event[:transferred_via] = "bank"
       else
         event[:transferred_via] = event_string
       end
