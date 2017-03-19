@@ -37,6 +37,10 @@ describe EventBuilder do
     it("should have amount") do
       expect(event[:amount]).to eq "14.3"
     end
+
+    it('should have practice date') do
+      assert_event_has_practice_date(event)
+    end
   end
 
   context("transfer sent events") do
@@ -227,6 +231,10 @@ describe EventBuilder do
     it("should have amount") do
       expect(event[:amount]).to eq "-3.5"
     end
+
+    it('should have practice date') do
+      assert_event_has_practice_date(event)
+    end
   end
 
   context("building a booked court event from note") do
@@ -276,6 +284,10 @@ describe EventBuilder do
         expect(event[:event_type_id]).to eq '3f211c34-6257-47fa-85c4-38d68530eba9'
       end
     end
+
+    it('should have practice date') do
+      assert_event_has_practice_date(event)
+    end
   end
 
   context("building a wine event from note") do
@@ -291,6 +303,10 @@ describe EventBuilder do
     it("should have amount") do
       expect(event[:amount]).to eq "18.0"
     end
+
+    it('should have practice date') do
+      assert_event_has_practice_date(event)
+    end
   end
 
   context("building a share of cancellation event from note") do
@@ -305,6 +321,10 @@ describe EventBuilder do
 
     it("should have amount") do
       expect(event[:amount]).to eq "0.38"
+    end
+
+    it('should have practice date') do
+      assert_event_has_practice_date(event)
     end
   end
 
@@ -326,7 +346,10 @@ describe EventBuilder do
       it('should have the match fee event type id') do
         expect(event[:event_type_id]).to eq 'edbccc86-d6ad-4057-a3c5-8d7a54f9c507'
       end
+
+      # should have the match date
     end
+
     context('with match event string') do
       subject(:event) do
         event_builder = get_event_builder()
@@ -336,6 +359,8 @@ describe EventBuilder do
       it('should have the match fee event type id') do
         expect(event[:event_type_id]).to eq 'edbccc86-d6ad-4057-a3c5-8d7a54f9c507'
       end
+
+      # should have the match date
     end
   end
 
@@ -375,6 +400,10 @@ describe EventBuilder do
     end
   end
 
+  def assert_event_has_practice_date(event)
+    expect(event[:practice_date].strftime("%D")).to eq Date.new(2016,12,26).strftime("%D")
+  end
+
   def get_event_builder
     return EventBuilder.new(uuid_service, time_service, team_member_service)
   end
@@ -387,6 +416,5 @@ describe EventBuilder do
     expect(event[:event_id]).to eq "77b3efc6-031b-4b13-a182-83ac1c48beb6"
     expect(event[:player_id]).to eq 'dfff4c34-6300-49c7-b9f0-a1c00a460fa8'
     expect(event[:event_date].strftime("%D")).to eq Date.new(2017, 2, 13).strftime("%D")
-    expect(event[:practice_date].strftime("%D")).to eq Date.new(2016,12,26).strftime("%D")
   end
 end

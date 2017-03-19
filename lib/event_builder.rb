@@ -74,9 +74,16 @@ class EventBuilder
       player_id: player_id,
       event_type_id: @events[event_type],
       event_date: @time_service.now,
-      practice_date: Time.parse(practice_date), # TODO not relavant for every event
       amount: decimal_amount.to_s("F")
     }
+
+    if (event_type == :c_fee ||
+        event_type == :balls_provided ||
+        event_type == :wine ||
+        event_type == :pies ||
+        event_type == :cancelled)
+      event[:practice_date] = Time.parse(practice_date)
+    end
 
     if (event_type == :transfer_sent)
       event[:transfer_sent_to] = "5a74ba2a-3af9-4cad-8243-71cfda9dfd4a"
