@@ -16,14 +16,14 @@ describe EventBuilder do
 
   let(:team_member_service) do
     team_member_service = double
-    allow(team_member_service).to receive(:get_user_by_name).and_return('dfff4c34-6300-49c7-b9f0-a1c00a460fa8')
+    allow(team_member_service).to receive(:get_team_member_id_by_name).and_return('dfff4c34-6300-49c7-b9f0-a1c00a460fa8')
     return team_member_service
   end
 
   context("building a participated event from note") do
     subject(:event) do
-      event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
-      event = event_builder.from_note("26/12/2016 c fee £14.30")
+      event_builder = get_event_builder()
+      return get_event_from_builder(event_builder, "26/12/2016 c fee £14.30")
     end
 
     it("should have standard properties") do
@@ -42,8 +42,8 @@ describe EventBuilder do
   context("transfer sent events") do
     context("negative transfers sent") do
       subject(:event) do
-        event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
-        return event_builder.from_note("26/12/2016 paid -£14.30")
+        event_builder = get_event_builder()
+        return get_event_from_builder(event_builder, "26/12/2016 paid -£14.30")
       end
 
       it("should have a negative amount", focus: true) do
@@ -53,8 +53,8 @@ describe EventBuilder do
 
     context("positive transfers sent") do
       subject(:event) do
-        event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
-        return event_builder.from_note("26/12/2016 paid £14.30")
+        event_builder = get_event_builder()
+        return get_event_from_builder(event_builder, "26/12/2016 paid £14.30")
       end
 
       it "should have a negative amount", :focus => true do
@@ -65,8 +65,8 @@ describe EventBuilder do
 
   context("building a transfer sent via system event from note") do
     subject(:event) do
-      event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
-      return event_builder.from_note("26/12/2016 paid -£14.30")
+      event_builder = get_event_builder()
+      return get_event_from_builder(event_builder, "26/12/2016 paid -£14.30")
     end
 
     it("should have standard properties") do
@@ -92,8 +92,8 @@ describe EventBuilder do
 
   context("building a transfer received via system event from note") do
     subject(:event) do
-      event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
-      return event_builder.from_note("26/12/2016 trans £23.35")
+      event_builder = get_event_builder()
+      return get_event_from_builder(event_builder, "26/12/2016 trans £23.35")
     end
 
     it('should have standard properties') do
@@ -118,8 +118,8 @@ describe EventBuilder do
 
     context('from note with trnsfr event string') do
       subject(:event) do
-        event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
-        return event_builder.from_note("26/12/2016 trnsfr £23.35")
+        event_builder = get_event_builder()
+        return get_event_from_builder(event_builder, "26/12/2016 trnsfr £23.35")
       end
 
       it('should have transfer sent event type id') do
@@ -129,8 +129,8 @@ describe EventBuilder do
 
     context('from note with transfer event string') do
       subject(:event) do
-        event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
-        return event_builder.from_note("26/12/2016 transfer £23.35")
+        event_builder = get_event_builder()
+        return get_event_from_builder(event_builder, "26/12/2016 transfer £23.35")
       end
 
       it('should have transfer sent event type id') do
@@ -146,8 +146,8 @@ describe EventBuilder do
       end
 
       subject(:event) do
-        event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
-        return event_builder.from_note("26/12/2016 transfer from michael £23.35")
+        event_builder = get_event_builder()
+        return get_event_from_builder(event_builder, "26/12/2016 transfer from michael £23.35")
       end
 
       it('should have transfer from player id') do
@@ -158,8 +158,8 @@ describe EventBuilder do
 
   context("building a transfer sent via paypal event from note") do
     subject(:event) do
-      event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
-      return event_builder.from_note("26/12/2016 paypal -£14.30")
+        event_builder = get_event_builder()
+        return get_event_from_builder(event_builder, "26/12/2016 paypal -£14.30")
     end
 
     it("should have standard properties") do
@@ -185,8 +185,8 @@ describe EventBuilder do
 
   context("building a transfer sent via cash event from note") do
     subject(:event) do
-      event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
-      return event_builder.from_note("26/12/2016 cash -£14.30")
+        event_builder = get_event_builder()
+        return get_event_from_builder(event_builder, "26/12/2016 cash -£14.30")
     end
 
     it("should have standard properties") do
@@ -212,8 +212,8 @@ describe EventBuilder do
 
   context("building a balls provided event from note") do
     subject(:event) do
-      event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
-      return event_builder.from_note("26/12/2016 balls -£3.50")
+        event_builder = get_event_builder()
+        return get_event_from_builder(event_builder, "26/12/2016 balls -£3.50")
     end
 
     it("should have standard properties") do
@@ -231,8 +231,8 @@ describe EventBuilder do
 
   context("building a booked court event from note") do
     subject(:event) do
-      event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
-      return event_builder.from_note("26/12/2016 booking -£18")
+        event_builder = get_event_builder()
+        return get_event_from_builder(event_builder, "26/12/2016 booking -£18")
     end
 
     it("should have standard properties") do
@@ -254,8 +254,8 @@ describe EventBuilder do
 
   context("building a pies event from note") do
     subject(:event) do
-      event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
-      return event_builder.from_note("26/12/2016 pies £18")
+        event_builder = get_event_builder()
+        return get_event_from_builder(event_builder, "26/12/2016 pies £18")
     end
 
     it("should have standard properties") do
@@ -268,8 +268,8 @@ describe EventBuilder do
 
     context('with event string m pies') do
       subject(:event) do
-        event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
-        return event_builder.from_note("26/12/2016 m pies £18")
+        event_builder = get_event_builder()
+        return get_event_from_builder(event_builder, "26/12/2016 m pies £18")
       end
 
       it('should have pies event type id') do
@@ -280,8 +280,8 @@ describe EventBuilder do
 
   context("building a wine event from note") do
     subject(:event) do
-      event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
-      return event_builder.from_note("26/12/2016 wine £18")
+      event_builder = get_event_builder()
+      return get_event_from_builder(event_builder, "26/12/2016 wine £18")
     end
 
     it("should have standard properties") do
@@ -295,8 +295,8 @@ describe EventBuilder do
 
   context("building a share of cancellation event from note") do
     subject(:event) do
-      event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
-      return event_builder.from_note("26/12/2016 cancelled £0.38")
+      event_builder = get_event_builder()
+      return get_event_from_builder(event_builder, "26/12/2016 cancelled £0.38")
     end
 
     it("should have standard properties") do
@@ -311,8 +311,8 @@ describe EventBuilder do
   context('building a match event from note') do
     context('with m fee event string') do
       subject(:event) do
-        event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
-        return event_builder.from_note('26/12/2016 m fee £7.50')
+      event_builder = get_event_builder()
+      return get_event_from_builder(event_builder, '26/12/2016 m fee £7.50')
       end
 
       it('should have standard properties') do
@@ -329,8 +329,8 @@ describe EventBuilder do
     end
     context('with match event string') do
       subject(:event) do
-        event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
-        return event_builder.from_note('26/12/2016 match £7.50')
+        event_builder = get_event_builder()
+        return get_event_from_builder(event_builder, '26/12/2016 match £7.50')
       end
 
       it('should have the match fee event type id') do
@@ -342,7 +342,7 @@ describe EventBuilder do
   context("unknown event type") do
     it("should throw exception") do
       event_builder = EventBuilder.new(uuid_service, time_service, team_member_service)
-      expect{event_builder.from_note("26/12/2016 unknown event £3.50")}.to raise_error(EventTypeUnknownError)
+      expect{event_builder.from_note("26/12/2016 unknown event £3.50", 'player_name')}.to raise_error(EventTypeUnknownError)
     end
   end
 
@@ -373,6 +373,14 @@ describe EventBuilder do
       note = "13/01/2017 cArRiEd £23.53"
       expect(EventBuilder.carried_event?(note)).to eq true
     end
+  end
+
+  def get_event_builder
+    return EventBuilder.new(uuid_service, time_service, team_member_service)
+  end
+
+  def get_event_from_builder(event_builder, note)
+    event_builder.from_note(note)
   end
 
   def has_common_fields(event)
