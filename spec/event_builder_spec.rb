@@ -380,12 +380,12 @@ describe EventBuilder do
   end
 
   def get_event_from_builder(event_builder, note)
-    event_builder.from_note(note)
+    event_builder.from_note(note, 'player name')
   end
 
   def has_common_fields(event)
     expect(event[:event_id]).to eq "77b3efc6-031b-4b13-a182-83ac1c48beb6"
-    expect(event[:player_id]).to eq "5535f27b-6098-4ae8-9046-bf8971bdb627"
+    expect(event[:player_id]).to eq 'dfff4c34-6300-49c7-b9f0-a1c00a460fa8'
     expect(event[:event_date].strftime("%D")).to eq Date.new(2017, 2, 13).strftime("%D")
     expect(event[:practice_date].strftime("%D")).to eq Date.new(2016,12,26).strftime("%D")
   end

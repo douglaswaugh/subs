@@ -58,18 +58,20 @@ class EventBuilder
     return event_type
   end
 
-  def from_note(note)
+  def from_note(note, player_name)
     practice_date, event_string, amount_sign, amount = note.match(@@note_pattern).captures
 
     event_string = event_string.downcase
 
     decimal_amount = BigDecimal.new(amount_sign + amount)
 
+    player_id = @team_member_service.get_team_member_id_by_name(player_name)
+
     event_type = get_event_type_from_event_string(event_string, decimal_amount)
 
     event = {
       event_id: "77b3efc6-031b-4b13-a182-83ac1c48beb6", # TODO give each event its own event ID
-      player_id: "5535f27b-6098-4ae8-9046-bf8971bdb627", # TODO get proper player ID
+      player_id: player_id,
       event_type_id: @events[event_type],
       event_date: @time_service.now,
       practice_date: Time.parse(practice_date), # TODO not relavant for every event

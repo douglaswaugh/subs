@@ -56,7 +56,7 @@ player_comments.keys.each do |key|
   puts player_names_by_id[key]
   player_comments[key].each do |note|
     if (EventBuilder.valid_note?(note) && !EventBuilder.carried_event?(note))
-      puts event_builder.from_note(note).to_json
+      puts event_builder.from_note(note, player_names_by_id[key]).to_json
     end
   end
 end
