@@ -1,7 +1,7 @@
 require 'securerandom'
 
 class UUIDService
-  def uuid
+  def new_uuid
     return SecureRandom.uuid
   end
 end

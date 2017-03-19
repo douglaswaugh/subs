@@ -70,7 +70,7 @@ class EventBuilder
     event_type = get_event_type_from_event_string(event_string, decimal_amount)
 
     event = {
-      event_id: "77b3efc6-031b-4b13-a182-83ac1c48beb6", # TODO give each event its own event ID
+      event_id: @uuid_service.new_uuid,
       player_id: player_id,
       event_type_id: @events[event_type],
       event_date: @time_service.now,
