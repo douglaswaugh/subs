@@ -19,7 +19,8 @@ class EventBuilder
       championship_fee: 'eb2b00b6-9507-4828-a5d3-dfe130ef62e8',
       strings_provided: '1e18bdcc-90e1-439d-b5d0-5508d1234e9d',
       ladder_c_fee: '6abd785c-3f66-4937-a5a4-6c9b4a1c82c5',
-      wine: '9ba92cd1-24e0-441e-b643-37271d4191b9'
+      wine: '9ba92cd1-24e0-441e-b643-37271d4191b9',
+      cancelled: '57f61307-f16c-46d0-b54d-2f25b47a1789'
     }
     @other_pattern = /.*/
   end
