@@ -52,11 +52,17 @@ events = {
 
 event_builder = EventBuilder.new(UUIDService.new, TimeService.new, TeamMemberService.new(player_ids_by_name))
 
+puts player_ids_by_name.to_json
+File.write('./data/players.yml', player_ids_by_name.to_json)
+
+event_count = 0
+
 player_comments.keys.each do |key|
   puts player_names_by_id[key]
   player_comments[key].each do |note|
     if (EventBuilder.valid_note?(note) && !EventBuilder.carried_event?(note))
-      puts event_builder.from_note(note, player_names_by_id[key]).to_json
+      File.write("./data/events/#{event_count}.yml", event_builder.from_note(note, player_names_by_id[key]).to_json)
+      event_count += 1
     end
   end
 end
