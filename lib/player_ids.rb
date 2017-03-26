@@ -5,6 +5,6 @@ class PlayerIds
 
   def get_player_id(name)
     player_ids = @yaml_loader.load('./data/players.yml')
-    return player_ids[name.to_sym]
+    return player_ids[name]
   end
 end
