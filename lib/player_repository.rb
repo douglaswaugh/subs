@@ -8,9 +8,7 @@ class PlayerRepository
 
     def get_player(name)
         events = @event_store.load_events
-
         player_id = @player_ids.get_player_id(name)
-
         player_events = filter_events_by_player(events, player_id)
 
         player = Player.new(name)
