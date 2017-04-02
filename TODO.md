@@ -18,3 +18,10 @@ how to handle carried events
 
 ### non-note events
 cells with dates but no notes still represents participation in practice. could make these participation events of amount 0
+
+player's balance
+---
+
+build carried events
+ignore carried events
+check running total against carried events
