@@ -20,9 +20,12 @@ describe EventBuilder do
     return team_member_service
   end
 
+  let(:event_builder) do
+    return EventBuilder.new(uuid_service, time_service, team_member_service)
+  end
+
   context("building a participated event from note") do
     subject(:event) do
-      event_builder = get_event_builder()
       return get_event_from_builder(event_builder, "26/12/2016 c fee £14.30")
     end
 
@@ -46,7 +49,6 @@ describe EventBuilder do
   context("transfer sent events") do
     context("negative transfers sent") do
       subject(:event) do
-        event_builder = get_event_builder()
         return get_event_from_builder(event_builder, "26/12/2016 paid -£14.30")
       end
 
@@ -57,7 +59,6 @@ describe EventBuilder do
 
     context("positive transfers sent") do
       subject(:event) do
-        event_builder = get_event_builder()
         return get_event_from_builder(event_builder, "26/12/2016 paid £14.30")
       end
 
@@ -69,7 +70,6 @@ describe EventBuilder do
 
   context("building a transfer sent via system event from note") do
     subject(:event) do
-      event_builder = get_event_builder()
       return get_event_from_builder(event_builder, "26/12/2016 paid -£14.30")
     end
 
@@ -96,7 +96,6 @@ describe EventBuilder do
 
   context("building a transfer received via system event from note") do
     subject(:event) do
-      event_builder = get_event_builder()
       return get_event_from_builder(event_builder, "26/12/2016 trans £23.35")
     end
 
@@ -122,7 +121,6 @@ describe EventBuilder do
 
     context('from note with trnsfr event string') do
       subject(:event) do
-        event_builder = get_event_builder()
         return get_event_from_builder(event_builder, "26/12/2016 trnsfr £23.35")
       end
 
@@ -133,7 +131,6 @@ describe EventBuilder do
 
     context('from note with transfer event string') do
       subject(:event) do
-        event_builder = get_event_builder()
         return get_event_from_builder(event_builder, "26/12/2016 transfer £23.35")
       end
 
@@ -150,7 +147,6 @@ describe EventBuilder do
       end
 
       subject(:event) do
-        event_builder = get_event_builder()
         return get_event_from_builder(event_builder, "26/12/2016 transfer from michael £23.35")
       end
 
@@ -162,7 +158,6 @@ describe EventBuilder do
 
   context("building a transfer sent via paypal event from note") do
     subject(:event) do
-        event_builder = get_event_builder()
         return get_event_from_builder(event_builder, "26/12/2016 paypal -£14.30")
     end
 
@@ -189,7 +184,6 @@ describe EventBuilder do
 
   context("building a transfer sent via cash event from note") do
     subject(:event) do
-        event_builder = get_event_builder()
         return get_event_from_builder(event_builder, "26/12/2016 cash -£14.30")
     end
 
@@ -216,7 +210,6 @@ describe EventBuilder do
 
   context("building a balls provided event from note") do
     subject(:event) do
-        event_builder = get_event_builder()
         return get_event_from_builder(event_builder, "26/12/2016 balls -£3.50")
     end
 
@@ -239,7 +232,6 @@ describe EventBuilder do
 
   context("building a booked court event from note") do
     subject(:event) do
-        event_builder = get_event_builder()
         return get_event_from_builder(event_builder, "26/12/2016 booking -£18")
     end
 
@@ -262,7 +254,6 @@ describe EventBuilder do
 
   context("building a pies event from note") do
     subject(:event) do
-        event_builder = get_event_builder()
         return get_event_from_builder(event_builder, "26/12/2016 pies £18")
     end
 
@@ -276,7 +267,6 @@ describe EventBuilder do
 
     context('with event string m pies') do
       subject(:event) do
-        event_builder = get_event_builder()
         return get_event_from_builder(event_builder, "26/12/2016 m pies £18")
       end
 
@@ -292,7 +282,6 @@ describe EventBuilder do
 
   context("building a wine event from note") do
     subject(:event) do
-      event_builder = get_event_builder()
       return get_event_from_builder(event_builder, "26/12/2016 wine £18")
     end
 
@@ -311,7 +300,6 @@ describe EventBuilder do
 
   context("building a share of cancellation event from note") do
     subject(:event) do
-      event_builder = get_event_builder()
       return get_event_from_builder(event_builder, "26/12/2016 cancelled £0.38")
     end
 
@@ -331,7 +319,6 @@ describe EventBuilder do
   context('building a match event from note') do
     context('with m fee event string') do
       subject(:event) do
-      event_builder = get_event_builder()
       return get_event_from_builder(event_builder, '26/12/2016 m fee £7.50')
       end
 
@@ -352,7 +339,6 @@ describe EventBuilder do
 
     context('with match event string') do
       subject(:event) do
-        event_builder = get_event_builder()
         return get_event_from_builder(event_builder, '26/12/2016 match £7.50')
       end
 
@@ -402,10 +388,6 @@ describe EventBuilder do
 
   def assert_event_has_practice_date(event)
     expect(event[:practice_date].strftime("%D")).to eq Date.new(2016,12,26).strftime("%D")
-  end
-
-  def get_event_builder
-    return EventBuilder.new(uuid_service, time_service, team_member_service)
   end
 
   def get_event_from_builder(event_builder, note)
