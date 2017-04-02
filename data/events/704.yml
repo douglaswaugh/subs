@@ -1,1 +1,8 @@
-{"event_id":"de136baa-902a-4156-a776-bfef91e937b4","player_id":"c41bf969-f249-47c4-a915-59c9d1ad1d18","event_type_id":"1c1bbb09-da4b-4e69-9835-a69342438ed7","event_date":"2017-03-26 14:21:31 +0100","amount":"-5.25","transfer_sent_to":"5a74ba2a-3af9-4cad-8243-71cfda9dfd4a","transferred_via":"cash"}
+---
+:event_id: 134f6705-27b9-4bf3-bb4f-fb9f81172d13
+:player_id: 505dd533-44d4-4acf-834f-29541496b6ef
+:event_type_id: 1c1bbb09-da4b-4e69-9835-a69342438ed7
+:event_date: 2017-04-02 15:55:59.238782000 +01:00
+:amount: !ruby/object:BigDecimal 27:-0.525E1
+:transfer_sent_to: 5a74ba2a-3af9-4cad-8243-71cfda9dfd4a
+:transferred_via: cash

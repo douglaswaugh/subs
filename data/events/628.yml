@@ -1,1 +1,8 @@
-{"event_id":"081ef0a0-548b-4fe7-91cf-458090b04b21","player_id":"24dbb276-6d45-4001-9cb0-cf284518df21","event_type_id":"1c1bbb09-da4b-4e69-9835-a69342438ed7","event_date":"2017-03-26 14:21:31 +0100","amount":"-0.17","transfer_sent_to":"5a74ba2a-3af9-4cad-8243-71cfda9dfd4a","transferred_via":"system"}
+---
+:event_id: 7c33d900-cb22-4e7b-88b1-06218f984609
+:player_id: 67537ad1-4b64-4442-907c-cde2fe0c46cd
+:event_type_id: 1c1bbb09-da4b-4e69-9835-a69342438ed7
+:event_date: 2017-04-02 15:55:59.139719000 +01:00
+:amount: !ruby/object:BigDecimal 27:-0.17E0
+:transfer_sent_to: 5a74ba2a-3af9-4cad-8243-71cfda9dfd4a
+:transferred_via: system

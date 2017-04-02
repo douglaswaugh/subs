@@ -1,1 +1,7 @@
-{"event_id":"50b9e41b-eb72-4d82-9001-b7708cce8ddc","player_id":"96db5a35-39d9-4267-a861-e2f7367fda1b","event_type_id":"bcab570e-add5-4082-8928-474508113771","event_date":"2017-03-26 14:21:31 +0100","amount":"-18.0","court_booked_date":"2016-02-18 00:00:00 +0000"}
+---
+:event_id: f18e4f4c-dd6e-433c-a21b-8e3a602cc52f
+:player_id: 201eed4a-18f9-40c5-be2d-d39c53dc9aea
+:event_type_id: bcab570e-add5-4082-8928-474508113771
+:event_date: 2017-04-02 15:55:58.583136000 +01:00
+:amount: !ruby/object:BigDecimal 18:-0.18E2
+:court_booked_date: 2016-02-18 00:00:00.000000000 +00:00

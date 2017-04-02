@@ -1,1 +1,7 @@
-{"event_id":"6c5d9b49-fde6-49ae-bdf9-e2497658a3c9","player_id":"0dc0653f-6848-4a04-b234-c58276fb5b2d","event_type_id":"29a2508d-5581-48a0-a286-27b0efafdb7b","event_date":"2017-03-26 14:21:31 +0100","amount":"5.38","practice_date":"2016-02-25 00:00:00 +0000"}
+---
+:event_id: f94fa93c-89e0-4015-8f93-40202822a422
+:player_id: 8ce5e290-cf0d-4a68-b7e1-0f4bc4085658
+:event_type_id: 29a2508d-5581-48a0-a286-27b0efafdb7b
+:event_date: 2017-04-02 15:55:59.578718000 +01:00
+:amount: !ruby/object:BigDecimal 18:0.538E1
+:practice_date: 2016-02-25 00:00:00.000000000 +00:00
