@@ -1,4 +1,5 @@
 require 'yaml'
+require_relative 'player'
 
 class PlayerRepository
     def initialize(event_store = EventStore.new, player_ids)

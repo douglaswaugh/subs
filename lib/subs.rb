@@ -1,6 +1,10 @@
 #!/usr/bin/env ruby
 
 require 'rubygems'
+require_relative 'player_repository'
+require_relative 'event_store'
+require_relative 'player_ids'
+require_relative 'yaml_loader'
 require 'thor'
 
 class Subs < Thor
@@ -27,8 +31,9 @@ class Subs < Thor
   method_option :player,:type => :string,:desc => "Player whose balance you want to get"
   def balance
     if options[:player]
-      player = Player.get_player(options[:player])
-      puts "#{player.name}: #{player.balance}"
+      player_repository = PlayerRepository.new(EventStore.new, PlayerIds.new(YamlLoader.new))
+      player = player_repository.get_player(options[:player])
+      puts "#{player.name}: #{player.balance.to_s('F')}"
     end
   end
 end
