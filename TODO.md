@@ -18,10 +18,3 @@ how to handle carried events
 
 ### non-note events
 cells with dates but no notes still represents participation in practice. could make these participation events of amount 0
-
-Getting a player's balance by name
----
-
-* Get the player's ID by player name
-* Use the ID to get the events for the player
-* Hydrate the player from the events
