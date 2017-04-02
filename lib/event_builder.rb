@@ -75,7 +75,7 @@ class EventBuilder
       player_id: player_id,
       event_type_id: @events[event_type],
       event_date: @time_service.now,
-      amount: decimal_amount.to_s("F")
+      amount: decimal_amount
     }
 
     if (event_type == :c_fee ||
@@ -97,7 +97,7 @@ class EventBuilder
         event[:transferred_via] = event_string
       end
 
-      event[:amount] = (0 - decimal_amount.abs).to_s("F")
+      event[:amount] = (0 - decimal_amount.abs)
     end
 
     if (event_type == :transfer_received)

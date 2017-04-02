@@ -1,6 +1,7 @@
 require 'rubyXL'
 require 'securerandom'
 require 'json'
+require 'yaml'
 require_relative '../note_line_splitter'
 require_relative '../event_builder'
 require_relative '../time_service'
@@ -61,7 +62,7 @@ player_comments.keys.each do |key|
   puts player_names_by_id[key]
   player_comments[key].each do |note|
     if (EventBuilder.valid_note?(note) && !EventBuilder.carried_event?(note))
-      File.write("./data/events/#{event_count}.yml", event_builder.from_note(note, player_names_by_id[key]).to_json)
+      File.write("./data/events/#{event_count}.yml", event_builder.from_note(note, player_names_by_id[key]).to_yaml)
       event_count += 1
     end
   end

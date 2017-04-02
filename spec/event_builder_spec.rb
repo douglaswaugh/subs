@@ -35,7 +35,7 @@ describe EventBuilder do
     end
 
     it("should have amount") do
-      expect(event[:amount]).to eq "14.3"
+      expect(event[:amount]).to eq 14.3
     end
 
     it('should have practice date') do
@@ -51,7 +51,7 @@ describe EventBuilder do
       end
 
       it("should have a negative amount", focus: true) do
-        expect(event[:amount]).to eq "-14.3"
+        expect(event[:amount]).to eq -14.3
       end
     end
 
@@ -62,7 +62,7 @@ describe EventBuilder do
       end
 
       it "should have a negative amount", :focus => true do
-        expect(event[:amount]).to eq "-14.3"
+        expect(event[:amount]).to eq -14.3
       end
     end
   end
@@ -86,7 +86,7 @@ describe EventBuilder do
     end
 
     it("should have amount") do
-      expect(event[:amount]).to eq "-14.3"
+      expect(event[:amount]).to eq -14.3
     end
 
     it("should have transferred via") do 
@@ -113,7 +113,7 @@ describe EventBuilder do
     end
 
     it('should have amount') do
-      expect(event[:amount]).to eq '23.35'
+      expect(event[:amount]).to eq 23.35
     end
 
     it('should have transferred via') do
@@ -179,7 +179,7 @@ describe EventBuilder do
     end
 
     it("should have amount") do
-      expect(event[:amount]).to eq "-14.3"
+      expect(event[:amount]).to eq -14.3
     end
 
     it("should have transferred via") do
@@ -206,7 +206,7 @@ describe EventBuilder do
     end
 
     it("should have amount") do
-      expect(event[:amount]).to eq "-14.3"
+      expect(event[:amount]).to eq -14.3
     end
 
     it("should have transferred via") do
@@ -229,7 +229,7 @@ describe EventBuilder do
     end
 
     it("should have amount") do
-      expect(event[:amount]).to eq "-3.5"
+      expect(event[:amount]).to eq -3.5
     end
 
     it('should have practice date') do
@@ -252,7 +252,7 @@ describe EventBuilder do
     end
 
     it("should have amount") do
-      expect(event[:amount]).to eq "-18.0"
+      expect(event[:amount]).to eq -18.0
     end
 
     it("should have court booking date") do
@@ -271,7 +271,7 @@ describe EventBuilder do
     end
 
     it("should have amount") do
-      expect(event[:amount]).to eq "18.0"
+      expect(event[:amount]).to eq 18.0
     end
 
     context('with event string m pies') do
@@ -301,7 +301,7 @@ describe EventBuilder do
     end
 
     it("should have amount") do
-      expect(event[:amount]).to eq "18.0"
+      expect(event[:amount]).to eq 18.0
     end
 
     it('should have practice date') do
@@ -320,7 +320,7 @@ describe EventBuilder do
     end
 
     it("should have amount") do
-      expect(event[:amount]).to eq "0.38"
+      expect(event[:amount]).to eq 0.38
     end
 
     it('should have practice date') do
@@ -340,7 +340,7 @@ describe EventBuilder do
       end
 
       it("should have amount") do
-        expect(event[:amount]).to eq "7.5"
+        expect(event[:amount]).to eq 7.5
       end
 
       it('should have the match fee event type id') do
