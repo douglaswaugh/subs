@@ -44,7 +44,7 @@ describe PlayerRepository do
             event2 = {
                 :type => "transfer_received", 
                 :amount => 5.55, 
-                :player_id => "514d2f54-ec98-445f-ad19-4b9e616f905d"                
+                :player_id => "514d2f54-ec98-445f-ad19-4b9e616f905d"
             }
             event3 = {
                 :type => "transfer_received", 
