@@ -38,7 +38,7 @@ class EventBuilder
 
     if (event_string == "c fee")
       event_type = :c_fee
-    elsif (event_string == "paid" || event_string == "paypal" || event_string == "cash" || event_string == "b trans")
+    elsif (event_string == "paid" || event_string == "paypal" || event_string == "cash" || event_string == "b trans"  || event_string == "bank")
       event_type = :transfer_sent
     elsif (event_string == "balls")
       event_type = :balls_provided
