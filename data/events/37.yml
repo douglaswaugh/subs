@@ -1,7 +1,0 @@
----
-:event_id: 341ad38c-b635-47af-8a01-3ebc8c85f6d8
-:player_id: f8664513-6159-43d4-a0a4-af2bc8ffd2ba
-:event_type_id: c219a3fe-bdee-4e21-ae0c-0504916650fd
-:event_date: 2017-04-02 15:55:58.391736000 +01:00
-:amount: !ruby/object:BigDecimal 18:-0.7E1
-:practice_date: 2017-01-05 00:00:00.000000000 +00:00

@@ -1,8 +1,0 @@
----
-:event_id: 5ef587dc-b789-4a54-b1bc-9d7b7d9e1797
-:player_id: 83746e7e-9d03-4147-b3d8-b263355b2c2c
-:event_type_id: 1c1bbb09-da4b-4e69-9835-a69342438ed7
-:event_date: 2017-04-02 15:55:58.401616000 +01:00
-:amount: !ruby/object:BigDecimal 27:-0.43E1
-:transfer_sent_to: 5a74ba2a-3af9-4cad-8243-71cfda9dfd4a
-:transferred_via: cash

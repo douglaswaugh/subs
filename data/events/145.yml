@@ -1,7 +1,0 @@
----
-:event_id: 3d880fd6-3f2a-4e8f-bc87-59949d43c97b
-:player_id: 201eed4a-18f9-40c5-be2d-d39c53dc9aea
-:event_type_id: bcab570e-add5-4082-8928-474508113771
-:event_date: 2017-04-02 15:55:58.588827000 +01:00
-:amount: !ruby/object:BigDecimal 18:-0.18E2
-:court_booked_date: 2016-03-31 00:00:00.000000000 +01:00
