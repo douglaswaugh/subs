@@ -25,7 +25,15 @@ class EventBuilder
     @other_pattern = /.*/
   end
 
-  def get_event_type_from_event_string(event_string, decimal_amount)
+  def from_note(note, player_name)
+    practice_date, event_string, amount_sign, amount = note.match(@@note_pattern).captures
+
+    event_string = event_string.downcase
+
+    decimal_amount = BigDecimal.new(amount_sign + amount)
+
+    player_id = @team_member_service.get_team_member_id_by_name(player_name)
+
     event_type = "unknown".to_sym
 
     if (event_string == "c fee")
@@ -55,20 +63,6 @@ class EventBuilder
     else
       raise EventTypeUnknownError.new(), "#{event_string} unknown, amount: #{decimal_amount.to_s}"
     end
-
-    return event_type
-  end
-
-  def from_note(note, player_name)
-    practice_date, event_string, amount_sign, amount = note.match(@@note_pattern).captures
-
-    event_string = event_string.downcase
-
-    decimal_amount = BigDecimal.new(amount_sign + amount)
-
-    player_id = @team_member_service.get_team_member_id_by_name(player_name)
-
-    event_type = get_event_type_from_event_string(event_string, decimal_amount)
 
     event = {
       event_id: @uuid_service.new_uuid,
