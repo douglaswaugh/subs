@@ -22,11 +22,8 @@ class PlayerRepository
     end
 
     def get_players()
-        player_ids = @player_ids.get_players()
-        players = []
-        player_ids.each do |player_id|
-            players << player_id
-        end
+        return @player_ids.get_players()
+
     end
 
     def filter_events_by_player(events, player_id)
