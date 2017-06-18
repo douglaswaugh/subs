@@ -2,6 +2,61 @@ require "spec_helper"
 require "yaml"
 
 describe PlayerRepository do
+    it 'should return a list of all the players' do
+        stub_event_store = double
+        events = [{
+            :type => 'transfer_received',
+            :amount => 5.55,
+            :player_id => '16214045-6585-46b6-b00e-2d8bd49fd76d'
+        }, {
+            :type => 'transfer_received',
+            :amount => 5.55,
+            :player_id =>'6c346f77-58fc-4cb5-bb70-97923f246977' 
+        }]
+
+        allow(stub_event_store).to receive(:load_events).and_return(events)
+
+        stub_player_ids = double
+        player_ids = {
+            'player 1' => '16214045-6585-46b6-b00e-2d8bd49fd76d',
+            'player 2' => '6c346f77-58fc-4cb5-bb70-97923f246977'
+        }
+        allow(stub_player_ids).to receive(:get_players).and_return(player_ids)
+
+        player_repository = PlayerRepository.new(stub_event_store, stub_player_ids)
+        players = player_repository.get_players()
+
+        expect(players.count).to eq 2
+    end
+
+    it 'should return a list of players with names and ids' do
+        stub_event_store = double
+        events = [{
+            :type => 'transfer_received',
+            :amount => 5.55,
+            :player_id => '16214045-6585-46b6-b00e-2d8bd49fd76d'
+        }, {
+            :type => 'transfer_received',
+            :amount => 5.55,
+            :player_id =>'6c346f77-58fc-4cb5-bb70-97923f246977'
+        }]
+
+        allow(stub_event_store).to receive(:load_events).and_return(events)
+
+        stub_player_ids = double
+        player_ids = {
+            'player 1' => '16214045-6585-46b6-b00e-2d8bd49fd76d',
+            'player 2' => '6c346f77-58fc-4cb5-bb70-97923f246977'
+        }
+        allow(stub_player_ids).to receive(:get_players).and_return(player_ids)
+
+        player_repository = PlayerRepository.new(stub_event_store, stub_player_ids)
+        players = player_repository.get_players()
+
+        expect(players.keys.first).to eq 'player 1'
+        expect(players.keys.last).to eq 'player 2'
+    end
+
     context "when the player has received a transfer" do
         it "should load a player from events" do
             stub_player_ids = double

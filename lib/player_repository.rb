@@ -21,6 +21,14 @@ class PlayerRepository
         return player
     end
 
+    def get_players()
+        player_ids = @player_ids.get_players()
+        players = []
+        player_ids.each do |player_id|
+            players << player_id
+        end
+    end
+
     def filter_events_by_player(events, player_id)
         events.select { |item| item[:player_id] == player_id }
     end
