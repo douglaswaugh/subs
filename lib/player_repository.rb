@@ -14,7 +14,7 @@ class PlayerRepository
 
         player = Player.new(name)
 
-        player_events.each do |event| 
+        player_events.each do |event|
             player.handle_event(event)
         end
 

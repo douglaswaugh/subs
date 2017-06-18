@@ -11,7 +11,7 @@ describe PlayerRepository do
         }, {
             :type => 'transfer_received',
             :amount => 5.55,
-            :player_id =>'6c346f77-58fc-4cb5-bb70-97923f246977' 
+            :player_id =>'6c346f77-58fc-4cb5-bb70-97923f246977'
         }]
 
         allow(stub_event_store).to receive(:load_events).and_return(events)
@@ -64,7 +64,7 @@ describe PlayerRepository do
 
             stub_event_store = double
             event = {
-                :type => "transfer_received", 
+                :type => "transfer_received",
                 :amount => 5.55,
                 :player_id => "514d2f54-ec98-445f-ad19-4b9e616f905d"
             }
@@ -92,18 +92,18 @@ describe PlayerRepository do
 
             stub_event_store = double
             event1 = {
-                :type => "transfer_received", 
-                :amount => 5.55, 
+                :type => "transfer_received",
+                :amount => 5.55,
                 :player_id => "514d2f54-ec98-445f-ad19-4b9e616f905d"
             }
             event2 = {
-                :type => "transfer_received", 
-                :amount => 5.55, 
+                :type => "transfer_received",
+                :amount => 5.55,
                 :player_id => "514d2f54-ec98-445f-ad19-4b9e616f905d"
             }
             event3 = {
-                :type => "transfer_received", 
-                :amount => 5.55, 
+                :type => "transfer_received",
+                :amount => 5.55,
                 :player_id => "29a2508d-5581-48a0-a286-27b0efafdb7b"
             }
             allow(stub_event_store).to receive(:load_events).and_return([event1,event2,event3])
