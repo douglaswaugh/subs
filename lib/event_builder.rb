@@ -20,7 +20,8 @@ class EventBuilder
       strings_provided: '1e18bdcc-90e1-439d-b5d0-5508d1234e9d',
       ladder_c_fee: '6abd785c-3f66-4937-a5a4-6c9b4a1c82c5',
       wine: '9ba92cd1-24e0-441e-b643-37271d4191b9',
-      cancelled: '57f61307-f16c-46d0-b54d-2f25b47a1789'
+      cancelled: '57f61307-f16c-46d0-b54d-2f25b47a1789',
+      carried: '03ef1d0b-6a38-440f-9737-8fc5e0c19ab7'
     }
     @other_pattern = /.*/
   end
@@ -60,6 +61,8 @@ class EventBuilder
       event_type = :strings_provided
     elsif (event_string == "ladder")
       event_type = :ladder_c_fee
+    elsif (event_string == 'carried')
+      event_type = :carried
     else
       raise EventTypeUnknownError.new(), "#{event_string} unknown, amount: #{decimal_amount.to_s}"
     end

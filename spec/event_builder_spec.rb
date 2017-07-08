@@ -46,6 +46,16 @@ describe EventBuilder do
     end
   end
 
+  context('carried events') do
+    subject(:event) do
+      return get_event_from_builder(event_builder, '26/12/2017 carried £12.53')
+    end
+
+    it 'should have the correct amount', :focus => true do
+      expect(event[:amount]).to eq 12.53
+    end
+  end
+
   context("transfer sent events") do
     context("negative transfers sent") do
       subject(:event) do
