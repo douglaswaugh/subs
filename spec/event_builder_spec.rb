@@ -99,7 +99,7 @@ describe EventBuilder do
       expect(event[:amount]).to eq -14.3
     end
 
-    it("should have transferred via") do 
+    it("should have transferred via") do
       expect(event[:transferred_via]).to eq "system"
     end
   end
