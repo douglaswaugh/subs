@@ -1,0 +1,2 @@
+class CarriedEventAmountDoesNotMatchBalanceError < StandardError
+end

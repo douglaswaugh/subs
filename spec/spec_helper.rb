@@ -8,3 +8,4 @@ require "event_type_unknown_error"
 require 'team_member_service'
 require 'player_ids'
 require 'yaml_loader'
+require 'carried_event_amount_does_not_match_balance_error'
