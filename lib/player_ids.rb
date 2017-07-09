@@ -7,4 +7,8 @@ class PlayerIds
     player_ids = @yaml_loader.load('./data/players.yml')
     return player_ids[name]
   end
+
+  def get_players()
+    return @yaml_loader.load('./data/players.yml')
+  end
 end
