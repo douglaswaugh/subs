@@ -25,8 +25,9 @@ describe Player do
   it 'should throw an exception when carried event processed amount does not equal the player balance' do
     player = Player.new('dummy player name')
     player.handle_event({:amount => 9.99})
+    player.handle_event({:amount => 5.45, :event_type_id => '03ef1d0b-6a38-440f-9737-8fc5e0c19ab7'})
     expect {
-      player.handle_event({:amount => 5.45, :event_type_id => '03ef1d0b-6a38-440f-9737-8fc5e0c19ab7'})
+      player.balance
     }.to raise_error(CarriedEventAmountDoesNotMatchBalanceError)
   end
 end
